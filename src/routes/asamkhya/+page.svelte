@@ -155,7 +155,7 @@
 				<div class="hero-title">
 					<h1 class="shadow-text-display">
 						<LineShadowText shadowColor="rgba(255, 255, 255, 0.3)" shadowOffset={2}>
-							Tell us why?
+							Tell us <em>why</em>?
 						</LineShadowText>
 					</h1>
 					<h1 class="shadow-text-display shadow-secondary">
