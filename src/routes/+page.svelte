@@ -1,15 +1,7 @@
-<script lang="ts">
-	import { goto } from '$app/navigation';
-	import { onMount } from 'svelte';
-
-	onMount(() => {
-		goto('/asamkhya', { replaceState: true });
-	});
-</script>
-
 <svelte:head>
 	<title>Asamkhya - Premier AI Institute</title>
 	<meta name="description" content="Redirecting to Asamkhya - The Premier Institute for AI Mastery" />
+	<meta http-equiv="refresh" content="0; url=/asamkhya" />
 </svelte:head>
 
 <div class="redirect-container">
