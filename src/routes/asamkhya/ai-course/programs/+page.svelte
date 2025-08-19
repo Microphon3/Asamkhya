@@ -1,3 +1,7 @@
+<script lang="ts">
+	import { TextReveal } from '$lib/components/magicui';
+</script>
+
 <svelte:head>
 	<title>Programs - Asamkhya AI Institute</title>
 	<meta name="description" content="Discover our rigorous AI education programs designed for exceptional professionals seeking mastery in artificial intelligence." />
@@ -172,7 +176,7 @@
 		<!-- Application CTA -->
 		<section class="application-cta">
 			<div class="cta-content">
-				<h2>Ready to Transform Your Career?</h2>
+				<TextReveal text="Ready to Transform Your Career?" />
 				<p>Join the ranks of AI leaders who chose excellence over convenience</p>
 				<a href="/asamkhya/assessment" class="cta-button">Begin Assessment Process</a>
 				<p class="cta-note">Applications reviewed on a rolling basis. Early application recommended.</p>

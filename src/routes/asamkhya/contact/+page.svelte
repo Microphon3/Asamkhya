@@ -94,8 +94,7 @@
 				<div class="hero-badge">
 					<span class="badge-text">Start Your Project</span>
 				</div>
-				<h1>Ready to Build Something Amazing?</h1>
-				<p class="contact-subtitle">Tell us about your vision and we'll create an AI-powered website that drives real results.</p>
+				<h1>On Your Mark. Get Set. Build.</h1>
 			</div>
 			
 			<div class="contact-content">
@@ -110,73 +109,14 @@
 					
 					<div class="contact-methods">
 						<div class="contact-method">
-							<div class="method-icon">💬</div>
-							<div class="method-content">
-								<h3>WhatsApp</h3>
-								<p>+91 98765 43210</p>
-								<span class="availability">Instant responses • Quick clarifications</span>
-								<button class="whatsapp-direct" on:click={openWhatsApp}>Chat Now</button>
-							</div>
-						</div>
-						
-						<div class="contact-method">
 							<div class="method-icon">📧</div>
 							<div class="method-content">
 								<h3>Email</h3>
-								<p>hello@asamkhya.dev</p>
-								<span class="availability">Response within 24 hours</span>
-							</div>
-						</div>
-						
-						<div class="contact-method">
-							<div class="method-icon">📞</div>
-							<div class="method-content">
-								<h3>Phone</h3>
-								<p>+91 98765 43210</p>
-								<span class="availability">Mon-Sat, 10 AM - 6 PM IST</span>
+								<p>hello@asamkhya.com</p>
 							</div>
 						</div>
 					</div>
 					
-					<div class="what-included">
-						<h3>What's Included</h3>
-						<div class="included-list">
-							<div class="included-item">
-								<span class="check">✓</span>
-								<span>Free consultation & project planning</span>
-							</div>
-							<div class="included-item">
-								<span class="check">✓</span>
-								<span>AI-powered automation setup</span>
-							</div>
-							<div class="included-item">
-								<span class="check">✓</span>
-								<span>Mobile-responsive design</span>
-							</div>
-							<div class="included-item">
-								<span class="check">✓</span>
-								<span>Fast global deployment</span>
-							</div>
-							<div class="included-item">
-								<span class="check">✓</span>
-								<span>30 days of support & updates</span>
-							</div>
-						</div>
-					</div>
-
-					<div class="quick-links">
-						<h3>Explore Examples</h3>
-						<div class="links-grid">
-							<a href="/asamkhya#portfolio" class="quick-link">
-								<div class="link-icon">🌐</div>
-								<span>View Portfolio</span>
-							</a>
-							<a href="/asamkhya/about" class="quick-link">
-								<div class="link-icon">🤖</div>
-								<span>Our Process</span>
-							</a>
-						</div>
-					</div>
 				</div>
 				
 				<!-- Contact Form -->
@@ -264,71 +204,6 @@
 				</div>
 			</div>
 			
-			<!-- Process Preview -->
-			<div class="process-preview">
-				<h2>What Happens Next?</h2>
-				<div class="process-grid">
-					<div class="process-step">
-						<div class="step-number">1</div>
-						<h3>Free Consultation</h3>
-						<p>We'll discuss your goals, analyze your needs, and recommend the best AI-powered solutions for your business.</p>
-					</div>
-					
-					<div class="process-step">
-						<div class="step-number">2</div>
-						<h3>Detailed Proposal</h3>
-						<p>Receive a comprehensive proposal with timeline, features, pricing, and examples of similar successful projects.</p>
-					</div>
-					
-					<div class="process-step">
-						<div class="step-number">3</div>
-						<h3>Smart Development</h3>
-						<p>We build your website with AI automation, modern design, and intelligent features that drive business results.</p>
-					</div>
-					
-					<div class="process-step">
-						<div class="step-number">4</div>
-						<h3>Launch & Support</h3>
-						<p>Go live with full deployment, training, and 30 days of support to ensure everything works perfectly.</p>
-					</div>
-				</div>
-			</div>
-
-			<!-- FAQ Section -->
-			<div class="faq-section">
-				<h2>Common Questions</h2>
-				<div class="faq-grid">
-					<div class="faq-item">
-						<h3>How quickly can you start my project?</h3>
-						<p>Most projects can begin within 1-2 weeks of proposal approval. We'll provide a detailed timeline during our consultation call.</p>
-					</div>
-					
-					<div class="faq-item">
-						<h3>What makes your websites "AI-powered"?</h3>
-						<p>We integrate smart automation like WhatsApp booking, intelligent forms, automated customer responses, and business process automation.</p>
-					</div>
-					
-					<div class="faq-item">
-						<h3>Do you provide hosting and maintenance?</h3>
-						<p>Yes! We deploy on fast global infrastructure and include 30 days of support. Extended maintenance plans are available for ongoing updates.</p>
-					</div>
-					
-					<div class="faq-item">
-						<h3>Can you integrate with my existing systems?</h3>
-						<p>Absolutely. We specialize in connecting your website to CRMs, payment systems, booking platforms, and other business tools you already use.</p>
-					</div>
-
-					<div class="faq-item">
-						<h3>What if I need changes after launch?</h3>
-						<p>The first 30 days include free updates and fixes. After that, we offer flexible hourly rates or monthly maintenance packages.</p>
-					</div>
-					
-					<div class="faq-item">
-						<h3>Do you work with businesses outside India?</h3>
-						<p>Yes! We work with clients globally. All communication is in English and we accommodate different time zones for calls and support.</p>
-					</div>
-				</div>
-			</div>
 		{/if}
 	</div>
 </div>
@@ -961,6 +836,37 @@
 		* {
 			transition: none !important;
 			animation: none !important;
+		}
+	}
+
+	/* iPhone 15 and similar small screens */
+	@media (max-width: 430px) {
+		.contact-container {
+			padding: 0 1rem;
+		}
+		
+		.contact-page {
+			padding: 2.5rem 0;
+		}
+		
+		.contact-header h1 {
+			font-size: clamp(2rem, 7vw, 2.8rem);
+		}
+		
+		.form-section {
+			padding: 2rem 1.5rem;
+		}
+		
+		.success-container {
+			padding: 2.5rem 1.5rem;
+		}
+		
+		.success-container h1 {
+			font-size: clamp(1.8rem, 6vw, 2.2rem);
+		}
+		
+		.success-message {
+			font-size: 1.1rem;
 		}
 	}
 </style>

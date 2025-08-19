@@ -4,6 +4,190 @@
 	function toggleFaq(index: number) {
 		faqOpen = faqOpen === index ? -1 : index;
 	}
+
+	// Application Form Logic
+	interface FormData {
+		// Section 1: Basic Information
+		name: string;
+		email: string;
+		phone: string;
+		currentRole: string;
+		location: string;
+		
+		// Section 2: Intent & Motivation
+		problemToSolve: string;
+		whyIntensiveFormat: string;
+		
+		// Section 3: Reasoning & Problem Solving
+		aiReplacementResponse: string;
+		budgetDecision: string;
+		
+		// Section 4: Understanding & Curiosity
+		learningExperience: string;
+		aiToolExperience: string;
+		
+		// Section 5: Practical Thinking
+		appIdea: string;
+		technicalExplanation: string;
+		
+		// Section 6: Commitment & Pace
+		keepingUpPlan: string;
+		successVision: string;
+	}
+
+	let formData: FormData = {
+		name: '',
+		email: '',
+		phone: '',
+		currentRole: '',
+		location: '',
+		problemToSolve: '',
+		whyIntensiveFormat: '',
+		aiReplacementResponse: '',
+		budgetDecision: '',
+		learningExperience: '',
+		aiToolExperience: '',
+		appIdea: '',
+		technicalExplanation: '',
+		keepingUpPlan: '',
+		successVision: ''
+	};
+
+	let currentSection = 1;
+	const totalSections = 6;
+	let isSubmitting = false;
+	let isSubmitted = false;
+	let errors: { [key: string]: string } = {};
+
+	// Auto-save to localStorage
+	$: if (typeof window !== 'undefined') {
+		localStorage.setItem('asamkhyaApplication', JSON.stringify(formData));
+	}
+
+	// Load saved data on mount
+	if (typeof window !== 'undefined') {
+		const saved = localStorage.getItem('asamkhyaApplication');
+		if (saved) {
+			formData = { ...formData, ...JSON.parse(saved) };
+		}
+	}
+
+	function validateSection(section: number): boolean {
+		errors = {};
+		let isValid = true;
+
+		switch (section) {
+			case 1:
+				if (!formData.name.trim()) { errors.name = 'Name is required'; isValid = false; }
+				if (!formData.email.trim()) { errors.email = 'Email is required'; isValid = false; }
+				if (!formData.phone.trim()) { errors.phone = 'Phone is required'; isValid = false; }
+				if (!formData.currentRole.trim()) { errors.currentRole = 'Current role is required'; isValid = false; }
+				if (!formData.location.trim()) { errors.location = 'Location is required'; isValid = false; }
+				break;
+			case 2:
+				if (!formData.problemToSolve.trim() || formData.problemToSolve.length < 100) {
+					errors.problemToSolve = 'Please provide at least 100 characters';
+					isValid = false;
+				}
+				if (!formData.whyIntensiveFormat.trim() || formData.whyIntensiveFormat.length < 100) {
+					errors.whyIntensiveFormat = 'Please provide at least 100 characters';
+					isValid = false;
+				}
+				break;
+			case 3:
+				if (!formData.aiReplacementResponse.trim() || formData.aiReplacementResponse.length < 100) {
+					errors.aiReplacementResponse = 'Please provide at least 100 characters';
+					isValid = false;
+				}
+				if (!formData.budgetDecision.trim() || formData.budgetDecision.length < 100) {
+					errors.budgetDecision = 'Please provide at least 100 characters';
+					isValid = false;
+				}
+				break;
+			case 4:
+				if (!formData.learningExperience.trim() || formData.learningExperience.length < 100) {
+					errors.learningExperience = 'Please provide at least 100 characters';
+					isValid = false;
+				}
+				if (!formData.aiToolExperience.trim() || formData.aiToolExperience.length < 100) {
+					errors.aiToolExperience = 'Please provide at least 100 characters';
+					isValid = false;
+				}
+				break;
+			case 5:
+				if (!formData.appIdea.trim() || formData.appIdea.length < 100) {
+					errors.appIdea = 'Please provide at least 100 characters';
+					isValid = false;
+				}
+				if (!formData.technicalExplanation.trim() || formData.technicalExplanation.length < 100) {
+					errors.technicalExplanation = 'Please provide at least 100 characters';
+					isValid = false;
+				}
+				break;
+			case 6:
+				if (!formData.keepingUpPlan.trim() || formData.keepingUpPlan.length < 100) {
+					errors.keepingUpPlan = 'Please provide at least 100 characters';
+					isValid = false;
+				}
+				if (!formData.successVision.trim() || formData.successVision.length < 100) {
+					errors.successVision = 'Please provide at least 100 characters';
+					isValid = false;
+				}
+				break;
+		}
+		return isValid;
+	}
+
+	function nextSection() {
+		if (validateSection(currentSection) && currentSection < totalSections) {
+			currentSection++;
+		}
+	}
+
+	function prevSection() {
+		if (currentSection > 1) {
+			currentSection--;
+		}
+	}
+
+	function getProgress(): number {
+		return ((currentSection - 1) / (totalSections - 1)) * 100;
+	}
+
+	async function handleSubmit() {
+		if (!validateSection(currentSection)) return;
+		
+		isSubmitting = true;
+		// Simulate form submission
+		await new Promise(resolve => setTimeout(resolve, 2000));
+		isSubmitted = true;
+		isSubmitting = false;
+		
+		// Clear saved data after successful submission
+		if (typeof window !== 'undefined') {
+			localStorage.removeItem('asamkhyaApplication');
+		}
+	}
+
+	function getCharacterCount(text: string): string {
+		const length = text.length;
+		if (length < 100) {
+			return `${length}/100 characters (minimum)`;
+		}
+		return `${length} characters`;
+	}
+
+	function getSectionTitle(section: number): string {
+		switch (section) {
+			case 1: return 'Basic Information';
+			case 2: return 'Intent & Motivation';
+			case 3: return 'Reasoning & Problem Solving';
+			case 4: return 'Understanding & Curiosity';
+			case 5: return 'Practical Thinking';
+			case 6: return 'Commitment & Pace';
+			default: return '';
+		}
+	}
 	
 	const faqs = [
 		{
@@ -15,27 +199,19 @@
 			answer: "Perfect. We bridge business vision with technical execution through AI-assisted development. Our approach is designed for intelligent individuals who want to understand and build, not just manage."
 		},
 		{
-			question: "Why ₹2,00,000 for 20 hours?",
-			answer: "This isn't about hours—it's about transformation and access. You're investing in selective education, founder mentorship, and joining an elite network of builders. Quality over quantity."
-		},
-		{
 			question: "What exactly will I graduate with?",
 			answer: "A working product, AI business acumen, strategic thinking skills, and practical coding abilities. Plus lifetime access to our network of serious builders and ongoing founder support."
 		},
 		{
 			question: "How do you select students?",
 			answer: "Through rigorous acumen-based assessment. We evaluate potential, critical thinking, and genuine curiosity over credentials. Our process includes application review, problem-solving assessment, and founder interviews."
-		},
-		{
-			question: "Why only in-person in Mumbai?",
-			answer: "Intensive learning requires focused environment and peer connections. Our Mumbai studio is designed for maximum impact. The energy and collaboration of serious builders in one space cannot be replicated online."
 		}
 	];
 </script>
 
 <svelte:head>
-	<title>Asamkhya - Where AI Meets Reality</title>
-	<meta name="description" content="20 Hours. In Person. Acumen-Based Admissions. Where sharp minds build the future together. Selective AI education for elite builders." />
+	<title>A4 AI - Build Like You Mean It</title>
+	<meta name="description" content="Acumen-based admissions. All approved admissions, course fee 2 lakh. Selective AI education for elite builders." />
 </svelte:head>
 
 <div class="page">
@@ -48,47 +224,19 @@
 				</div>
 				
 				<h1 class="hero-title">
-					<span class="title-primary">Where AI Meets Reality</span>
-					<span class="title-secondary">20 Hours. In Person. Acumen-Based Admissions.</span>
+					<span class="title-primary">Build Like You Mean It</span>
+					<span class="title-secondary">Acumen-Based Admissions.</span>
 				</h1>
 				
 				<p class="hero-description">
-					Where sharp minds build the future together.
+					All approved admissions, course fee 2 lakh.
 				</p>
 
-				<div class="hero-metrics">
-					<div class="metric">
-						<div class="metric-value">₹2L</div>
-						<div class="metric-label">Investment</div>
-					</div>
-					<div class="metric">
-						<div class="metric-value">20hrs</div>
-						<div class="metric-label">In Person</div>
-					</div>
-					<div class="metric">
-						<div class="metric-value">15max</div>
-						<div class="metric-label">First Cohort</div>
-					</div>
-				</div>
 
-				<div class="hero-actions">
-					<a href="/asamkhya/apply" class="cta-primary">
-						<span>Apply Now</span>
-						<svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-							<path d="M8 0L8 14M8 14L14 8M8 14L2 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-						</svg>
-					</a>
-					<a href="/asamkhya/contact" class="cta-secondary">
-						Questions? Let's Talk
-					</a>
-				</div>
-				
-				<div class="hero-note">
-					<span>First batch starts October 2025 • Mumbai</span>
-				</div>
 			</div>
 		</div>
 	</section>
+
 
 	<!-- Course Breakdown Section -->
 	<section class="course-breakdown">
@@ -147,100 +295,6 @@
 		</div>
 	</section>
 
-	<!-- Product Showcase Section -->
-	<section class="product-showcase">
-		<div class="container">
-			<div class="showcase-header">
-				<h2>What You'll Actually Build</h2>
-				<p>Real products our graduates create and launch</p>
-			</div>
-
-			<div class="products-grid">
-				<!-- Row 1 - Business Automation Tools -->
-				<div class="product-card">
-					<div class="product-badge business">Build in Week 3-4</div>
-					<h3>Smart Customer Management System</h3>
-					<p>Track leads, automate follow-ups, close more deals</p>
-				</div>
-
-				<div class="product-card">
-					<div class="product-badge business">Build in Week 3-4</div>
-					<h3>AI-Powered Booking Platform</h3>
-					<p>Let customers book services 24/7 with intelligent scheduling</p>
-				</div>
-
-				<div class="product-card">
-					<div class="product-badge business">Build in Week 4</div>
-					<h3>Internal Workflow Dashboard</h3>
-					<p>Streamline team operations with custom automation</p>
-				</div>
-
-				<!-- Row 2 - Revenue-Generating Platforms -->
-				<div class="product-card">
-					<div class="product-badge advanced">Advanced Project</div>
-					<h3>Industry-Specific SaaS Tool</h3>
-					<p>Solve problems in your field, charge monthly subscriptions</p>
-				</div>
-
-				<div class="product-card">
-					<div class="product-badge business">Build in Week 2-3</div>
-					<h3>Professional Services Website</h3>
-					<p>Consulting site with automated client onboarding</p>
-				</div>
-
-				<div class="product-card">
-					<div class="product-badge business">Build in Week 3-4</div>
-					<h3>Course Delivery Platform</h3>
-					<p>Sell your expertise with built-in payment processing</p>
-				</div>
-
-				<!-- Row 3 - AI-Enhanced Applications -->
-				<div class="product-card">
-					<div class="product-badge ai">AI Integration</div>
-					<h3>Smart Document Processor</h3>
-					<p>Upload invoices, get instant data extraction and insights</p>
-				</div>
-
-				<div class="product-card">
-					<div class="product-badge ai">AI Integration</div>
-					<h3>Customer Service Chatbot</h3>
-					<p>Handle 80% of customer queries automatically</p>
-				</div>
-
-				<div class="product-card">
-					<div class="product-badge advanced">Advanced Project</div>
-					<h3>Data Analysis Dashboard</h3>
-					<p>Turn your business data into actionable insights</p>
-				</div>
-
-				<!-- Row 4 - E-commerce & Marketplace -->
-				<div class="product-card">
-					<div class="product-badge business">Build in Week 3-4</div>
-					<h3>Niche E-commerce Store</h3>
-					<p>Sell products with inventory management and payment processing</p>
-				</div>
-
-				<div class="product-card">
-					<div class="product-badge advanced">Advanced Project</div>
-					<h3>Service Marketplace</h3>
-					<p>Connect service providers with customers in your industry</p>
-				</div>
-
-				<div class="product-card">
-					<div class="product-badge advanced">Advanced Project</div>
-					<h3>Subscription Platform</h3>
-					<p>Launch recurring revenue products with automated billing</p>
-				</div>
-			</div>
-
-			<div class="showcase-footer">
-				<div class="footer-content">
-					<p class="footer-highlight">Choose your product idea during the application process</p>
-					<p class="footer-note">Your cohort project becomes your first business tool</p>
-				</div>
-			</div>
-		</div>
-	</section>
 
 	<!-- Founders Section -->
 	<section class="founders">
@@ -283,104 +337,381 @@
 				</div>
 			</div>
 			
-			<div class="founders-promise">
-				<div class="promise-content">
-					<h3>Why This Combination Works</h3>
-					<p>Chintan brings 20 years of focused learning and technical depth. Tanmay brings the recent experience of making the journey from business thinking to technical building.</p>
-					<br>
-					<p>When a dedicated technologist shares two decades of learning with someone who just crossed from business to building, you get teaching that works for people like you.</p>
+			<!-- Premium Application Section -->
+			{#if !isSubmitted}
+				<div class="form-wrapper">
+					<div class="application-header">
+						<span class="main-answer">Ready Stranger?</span>
+					</div>
+
+					<!-- Progress Bar -->
+					<div class="progress-container">
+						<div class="progress-bar">
+							<div class="progress-fill" style="width: {getProgress()}%"></div>
+						</div>
+						<div class="progress-text">
+							Section {currentSection} of {totalSections}: {getSectionTitle(currentSection)}
+						</div>
+					</div>
+
+					<form class="comprehensive-form">
+						<!-- Section 1: Basic Information -->
+						{#if currentSection === 1}
+							<div class="form-section" class:active={currentSection === 1}>
+								<div class="section-header">
+									<h3>Basic Information</h3>
+									<p>Let's start with the essentials about you.</p>
+								</div>
+								
+								<div class="form-grid">
+									<div class="form-group">
+										<label for="name">Full Name *</label>
+										<input 
+											type="text" 
+											id="name" 
+											bind:value={formData.name}
+											placeholder="Enter your full name"
+											class:error={errors.name}
+										/>
+										{#if errors.name}
+											<span class="error-message">{errors.name}</span>
+										{/if}
+									</div>
+
+									<div class="form-group">
+										<label for="email">Email Address *</label>
+										<input 
+											type="email" 
+											id="email" 
+											bind:value={formData.email}
+											placeholder="your.email@example.com"
+											class:error={errors.email}
+										/>
+										{#if errors.email}
+											<span class="error-message">{errors.email}</span>
+										{/if}
+									</div>
+
+									<div class="form-group">
+										<label for="phone">Phone Number *</label>
+										<input 
+											type="tel" 
+											id="phone" 
+											bind:value={formData.phone}
+											placeholder="+91 98765 43210"
+											class:error={errors.phone}
+										/>
+										{#if errors.phone}
+											<span class="error-message">{errors.phone}</span>
+										{/if}
+									</div>
+
+									<div class="form-group">
+										<label for="currentRole">Current Role/Profession *</label>
+										<input 
+											type="text" 
+											id="currentRole" 
+											bind:value={formData.currentRole}
+											placeholder="e.g., Software Engineer, Business Owner, Student"
+											class:error={errors.currentRole}
+										/>
+										{#if errors.currentRole}
+											<span class="error-message">{errors.currentRole}</span>
+										{/if}
+									</div>
+
+									<div class="form-group full-width">
+										<label for="location">Location *</label>
+										<input 
+											type="text" 
+											id="location" 
+											bind:value={formData.location}
+											placeholder="City, Country"
+											class:error={errors.location}
+										/>
+										{#if errors.location}
+											<span class="error-message">{errors.location}</span>
+										{/if}
+									</div>
+								</div>
+							</div>
+						{/if}
+
+						<!-- Section 2: Intent & Motivation -->
+						{#if currentSection === 2}
+							<div class="form-section" class:active={currentSection === 2}>
+								<div class="section-header">
+									<h3>Intent & Motivation</h3>
+									<p>Help us understand what drives you and why you're here.</p>
+								</div>
+								
+								<div class="form-group">
+									<label for="problemToSolve">Describe a specific problem you want to solve with AI/technology. Be concrete - what exactly frustrates you that you think tech could fix? *</label>
+									<textarea 
+										id="problemToSolve" 
+										bind:value={formData.problemToSolve}
+										placeholder="Be specific about a real problem you've experienced or observed..."
+										rows="5"
+										class:error={errors.problemToSolve}
+									></textarea>
+									<div class="character-count" class:error={formData.problemToSolve.length < 100}>
+										{getCharacterCount(formData.problemToSolve)}
+									</div>
+									{#if errors.problemToSolve}
+										<span class="error-message">{errors.problemToSolve}</span>
+									{/if}
+								</div>
+
+								<div class="form-group">
+									<label for="whyIntensiveFormat">Why intensive learning vs. a 6-month online course? What draws you to this format? *</label>
+									<textarea 
+										id="whyIntensiveFormat" 
+										bind:value={formData.whyIntensiveFormat}
+										placeholder="Tell us about your learning style and why intensive format appeals to you..."
+										rows="5"
+										class:error={errors.whyIntensiveFormat}
+									></textarea>
+									<div class="character-count" class:error={formData.whyIntensiveFormat.length < 100}>
+										{getCharacterCount(formData.whyIntensiveFormat)}
+									</div>
+									{#if errors.whyIntensiveFormat}
+										<span class="error-message">{errors.whyIntensiveFormat}</span>
+									{/if}
+								</div>
+							</div>
+						{/if}
+
+						<!-- Section 3: Reasoning & Problem Solving -->
+						{#if currentSection === 3}
+							<div class="form-section" class:active={currentSection === 3}>
+								<div class="section-header">
+									<h3>Reasoning & Problem Solving</h3>
+									<p>We want to see how you think through complex scenarios.</p>
+								</div>
+								
+								<div class="form-group">
+									<label for="aiReplacementResponse">A restaurant owner says 'AI will replace all my staff.' How would you respond? What's your reasoning? *</label>
+									<textarea 
+										id="aiReplacementResponse" 
+										bind:value={formData.aiReplacementResponse}
+										placeholder="Walk through your thinking - what would you tell this person and why..."
+										rows="5"
+										class:error={errors.aiReplacementResponse}
+									></textarea>
+									<div class="character-count" class:error={formData.aiReplacementResponse.length < 100}>
+										{getCharacterCount(formData.aiReplacementResponse)}
+									</div>
+									{#if errors.aiReplacementResponse}
+										<span class="error-message">{errors.aiReplacementResponse}</span>
+									{/if}
+								</div>
+
+								<div class="form-group">
+									<label for="budgetDecision">You have ₹50,000 to improve your business operations. Walk us through how you'd decide whether to spend it on AI tools, hiring people, or something else. *</label>
+									<textarea 
+										id="budgetDecision" 
+										bind:value={formData.budgetDecision}
+										placeholder="Show us your decision-making process step by step..."
+										rows="5"
+										class:error={errors.budgetDecision}
+									></textarea>
+									<div class="character-count" class:error={formData.budgetDecision.length < 100}>
+										{getCharacterCount(formData.budgetDecision)}
+									</div>
+									{#if errors.budgetDecision}
+										<span class="error-message">{errors.budgetDecision}</span>
+									{/if}
+								</div>
+							</div>
+						{/if}
+
+						<!-- Section 4: Understanding & Curiosity -->
+						{#if currentSection === 4}
+							<div class="form-section" class:active={currentSection === 4}>
+								<div class="section-header">
+									<h3>Understanding & Curiosity</h3>
+									<p>Tell us about your learning journey and curiosity about AI.</p>
+								</div>
+								
+								<div class="form-group">
+									<label for="learningExperience">Describe the last time you learned something completely new and difficult. What was your approach? *</label>
+									<textarea 
+										id="learningExperience" 
+										bind:value={formData.learningExperience}
+										placeholder="Walk us through a specific learning challenge you faced..."
+										rows="5"
+										class:error={errors.learningExperience}
+									></textarea>
+									<div class="character-count" class:error={formData.learningExperience.length < 100}>
+										{getCharacterCount(formData.learningExperience)}
+									</div>
+									{#if errors.learningExperience}
+										<span class="error-message">{errors.learningExperience}</span>
+									{/if}
+								</div>
+
+								<div class="form-group">
+									<label for="aiToolExperience">What's one AI tool you've tried using? What worked, what didn't, and why do you think that happened? *</label>
+									<textarea 
+										id="aiToolExperience" 
+										bind:value={formData.aiToolExperience}
+										placeholder="Be specific about your experience with ChatGPT, Claude, or any other AI tool..."
+										rows="5"
+										class:error={errors.aiToolExperience}
+									></textarea>
+									<div class="character-count" class:error={formData.aiToolExperience.length < 100}>
+										{getCharacterCount(formData.aiToolExperience)}
+									</div>
+									{#if errors.aiToolExperience}
+										<span class="error-message">{errors.aiToolExperience}</span>
+									{/if}
+								</div>
+							</div>
+						{/if}
+
+						<!-- Section 5: Practical Thinking -->
+						{#if currentSection === 5}
+							<div class="form-section" class:active={currentSection === 5}>
+								<div class="section-header">
+									<h3>Practical Thinking</h3>
+									<p>Show us how you approach building and explaining solutions.</p>
+								</div>
+								
+								<div class="form-group">
+									<label for="appIdea">If you could build one app/website that doesn't exist today, what would it do? Who would use it and why? *</label>
+									<textarea 
+										id="appIdea" 
+										bind:value={formData.appIdea}
+										placeholder="Describe your idea, target users, and why it would be valuable..."
+										rows="5"
+										class:error={errors.appIdea}
+									></textarea>
+									<div class="character-count" class:error={formData.appIdea.length < 100}>
+										{getCharacterCount(formData.appIdea)}
+									</div>
+									{#if errors.appIdea}
+										<span class="error-message">{errors.appIdea}</span>
+									{/if}
+								</div>
+
+								<div class="form-group">
+									<label for="technicalExplanation">Describe a time when you had to explain something technical to someone non-technical. How did you approach it? *</label>
+									<textarea 
+										id="technicalExplanation" 
+										bind:value={formData.technicalExplanation}
+										placeholder="Walk us through your approach to making complex things simple..."
+										rows="5"
+										class:error={errors.technicalExplanation}
+									></textarea>
+									<div class="character-count" class:error={formData.technicalExplanation.length < 100}>
+										{getCharacterCount(formData.technicalExplanation)}
+									</div>
+									{#if errors.technicalExplanation}
+										<span class="error-message">{errors.technicalExplanation}</span>
+									{/if}
+								</div>
+							</div>
+						{/if}
+
+						<!-- Section 6: Commitment & Pace -->
+						{#if currentSection === 6}
+							<div class="form-section" class:active={currentSection === 6}>
+								<div class="section-header">
+									<h3>Commitment & Pace</h3>
+									<p>Help us understand your commitment and vision for success.</p>
+								</div>
+								
+								<div class="form-group">
+									<label for="keepingUpPlan">This is intensive learning with very capable people. What's your plan for keeping up? *</label>
+									<textarea 
+										id="keepingUpPlan" 
+										bind:value={formData.keepingUpPlan}
+										placeholder="Tell us about your preparation and approach to intense learning..."
+										rows="5"
+										class:error={errors.keepingUpPlan}
+									></textarea>
+									<div class="character-count" class:error={formData.keepingUpPlan.length < 100}>
+										{getCharacterCount(formData.keepingUpPlan)}
+									</div>
+									{#if errors.keepingUpPlan}
+										<span class="error-message">{errors.keepingUpPlan}</span>
+									{/if}
+								</div>
+
+								<div class="form-group">
+									<label for="successVision">What would success look like for you 6 months after completing this program? *</label>
+									<textarea 
+										id="successVision" 
+										bind:value={formData.successVision}
+										placeholder="Paint a specific picture of where you see yourself..."
+										rows="5"
+										class:error={errors.successVision}
+									></textarea>
+									<div class="character-count" class:error={formData.successVision.length < 100}>
+										{getCharacterCount(formData.successVision)}
+									</div>
+									{#if errors.successVision}
+										<span class="error-message">{errors.successVision}</span>
+									{/if}
+								</div>
+							</div>
+						{/if}
+
+						<!-- Navigation Buttons -->
+						<div class="form-navigation">
+							{#if currentSection > 1}
+								<button type="button" class="nav-button secondary" on:click={prevSection}>
+									← Previous Section
+								</button>
+							{/if}
+							
+							{#if currentSection < totalSections}
+								<button type="button" class="nav-button primary" on:click={nextSection}>
+									Next Section →
+								</button>
+							{:else}
+								<button 
+									type="button" 
+									class="submit-button" 
+									on:click={handleSubmit}
+									disabled={isSubmitting}
+								>
+									{#if isSubmitting}
+										Submitting Application...
+									{:else}
+										Submit Application
+									{/if}
+								</button>
+							{/if}
+						</div>
+
+					</form>
 				</div>
-			</div>
+			{:else}
+				<div class="success-page">
+					<div class="container">
+						<div class="success-content">
+							<div class="success-icon">✅</div>
+							<h2>Application Submitted!</h2>
+							<p class="success-message">
+								Thank you for your application. We'll review and contact you within 48 hours.
+							</p>
+							<div class="next-steps">
+								<h3>What happens next:</h3>
+								<ol>
+									<li>Our founders review your responses (within 24 hours)</li>
+									<li>If your application shows potential, we'll schedule a conversation</li>
+									<li>We'll discuss your goals, our methodology, and mutual fit</li>
+									<li>If accepted, we'll provide enrollment details</li>
+								</ol>
+							</div>
+						</div>
+					</div>
+				</div>
+			{/if}
 		</div>
 	</section>
 
-	<!-- Outcomes Section -->
-	<section class="promise">
-		<div class="container">
-			<div class="promise-content">
-				<h2>Graduate with</h2>
-				<div class="promise-grid">
-					<div class="promise-item">
-						<div class="promise-icon">🚀</div>
-						<h3>A Working Product</h3>
-						<p>A complete, deployed application that solves real problems and can generate revenue from day one.</p>
-					</div>
-					<div class="promise-item">
-						<div class="promise-icon">🧠</div>
-						<h3>AI Business Acumen</h3>
-						<p>Deep understanding of how AI drives business value and strategic decision-making in real-world scenarios.</p>
-					</div>
-					<div class="promise-item">
-						<div class="promise-icon">💡</div>
-						<h3>Strategic Thinking</h3>
-						<p>Critical analysis skills to navigate AI hype, assess opportunities, and make intelligent technology decisions.</p>
-					</div>
-					<div class="promise-item">
-						<div class="promise-icon">⚡</div>
-						<h3>Practical Coding Skills</h3>
-						<p>Hands-on development abilities with AI-assisted tools and modern frameworks for rapid product building.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- Admissions Section -->
-	<section class="course-details">
-		<div class="container">
-			<div class="details-header">
-				<h2>Selective Admission Process</h2>
-				<p>We seek individuals with the intellectual curiosity and drive to excel</p>
-			</div>
-			
-			<div class="details-grid">
-				<div class="detail-card">
-					<div class="card-header">
-						<div class="card-icon">🧠</div>
-						<h3>Acumen-Based Selection</h3>
-					</div>
-					<div class="card-content">
-						<div class="detail-value">Merit Over Background</div>
-						<p>We evaluate potential, not pedigree. Sharp thinking, genuine curiosity, and willingness to challenge assumptions matter more than degrees.</p>
-					</div>
-				</div>
-
-				<div class="detail-card">
-					<div class="card-header">
-						<div class="card-icon">🎯</div>
-						<h3>Rigorous Assessment</h3>
-					</div>
-					<div class="card-content">
-						<div class="detail-value">Multi-Stage Process</div>
-						<p>Application review, problem-solving assessment, and founder interviews ensure we select candidates who thrive in intensive learning.</p>
-					</div>
-				</div>
-
-				<div class="detail-card">
-					<div class="card-header">
-						<div class="card-icon">👥</div>
-						<h3>Elite Cohort Size</h3>
-					</div>
-					<div class="card-content">
-						<div class="detail-value">Maximum 15 Students</div>
-						<p>Small cohorts enable personalized attention and foster deep connections between serious builders who push each other to excel.</p>
-					</div>
-				</div>
-
-				<div class="detail-card featured">
-					<div class="card-header">
-						<div class="card-icon">💎</div>
-						<h3>Investment</h3>
-					</div>
-					<div class="card-content">
-						<div class="detail-value">₹2,00,000</div>
-						<p>Fee for all students accepted in the first cohort</p>
-						<div class="investment-note">Includes: All materials, mentorship, workspace access, and ongoing support</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
 
 	<!-- FAQ Section -->
 	<section class="faq">
@@ -417,7 +748,7 @@
 		<div class="container">
 			<div class="cta-content">
 				<h2>Ready to build the future?</h2>
-				<p>Join the first batch of builders who refuse to settle for confusion and mediocrity.</p>
+				<p>Join the first batch of builders.</p>
 				<div class="cta-actions">
 					<a href="/asamkhya/apply" class="cta-primary large">
 						<span>Apply Now</span>
@@ -425,9 +756,6 @@
 							<path d="M8 0L8 14M8 14L14 8M8 14L2 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 						</svg>
 					</a>
-				</div>
-				<div class="cta-urgency">
-					<span>First batch starts October 2025 • 15 seats only</span>
 				</div>
 			</div>
 		</div>
@@ -691,148 +1019,6 @@
 		left: 0;
 	}
 
-	/* Product Showcase Section */
-	.product-showcase {
-		padding: 8rem 0;
-		background: var(--bg-primary);
-	}
-
-	.showcase-header {
-		text-align: center;
-		margin-bottom: 4rem;
-	}
-
-	.showcase-header h2 {
-		font-size: clamp(2.5rem, 5vw, 3.5rem);
-		font-weight: 700;
-		color: var(--text-primary);
-		margin: 0 0 1rem;
-		line-height: 1.1;
-	}
-
-	.showcase-header p {
-		font-size: 1.125rem;
-		color: var(--text-secondary);
-		margin: 0;
-	}
-
-	.products-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-		gap: 2rem;
-		max-width: 1400px;
-		margin: 0 auto 4rem;
-	}
-
-	.product-card {
-		background: var(--bg-glass);
-		border: 1px solid var(--border-medium);
-		border-radius: 20px;
-		padding: 2.5rem;
-		backdrop-filter: blur(20px);
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-		position: relative;
-		overflow: hidden;
-	}
-
-	.product-card:hover {
-		transform: translateY(-4px);
-		border-color: var(--neon-green);
-		box-shadow: var(--shadow-medium);
-	}
-
-	.product-card::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		height: 3px;
-		background: linear-gradient(90deg, var(--neon-green), var(--neon-green-dark));
-		opacity: 0;
-		transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-	}
-
-	.product-card:hover::before {
-		opacity: 1;
-	}
-
-	.product-badge {
-		display: inline-block;
-		padding: 0.375rem 1rem;
-		border-radius: 50px;
-		font-size: 0.75rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-		margin-bottom: 1.5rem;
-		border: 1px solid;
-	}
-
-	.product-badge.business {
-		background: rgba(0, 255, 136, 0.1);
-		color: var(--neon-green);
-		border-color: var(--neon-green);
-	}
-
-	.product-badge.ai {
-		background: rgba(147, 51, 234, 0.1);
-		color: #a855f7;
-		border-color: #a855f7;
-	}
-
-	.product-badge.advanced {
-		background: rgba(239, 68, 68, 0.1);
-		color: #ef4444;
-		border-color: #ef4444;
-	}
-
-	.product-card h3 {
-		color: var(--text-primary);
-		font-size: 1.25rem;
-		font-weight: 600;
-		margin: 0 0 1rem;
-		line-height: 1.3;
-	}
-
-	.product-card p {
-		color: var(--text-secondary);
-		line-height: 1.6;
-		margin: 0;
-		font-size: 1rem;
-	}
-
-	.showcase-footer {
-		text-align: center;
-		background: var(--bg-glass);
-		border: 1px solid var(--border-medium);
-		border-radius: 20px;
-		padding: 2.5rem;
-		backdrop-filter: blur(20px);
-		max-width: 800px;
-		margin: 0 auto;
-	}
-
-	.footer-content {
-		display: flex;
-		flex-direction: column;
-		gap: 0.75rem;
-	}
-
-	.footer-highlight {
-		color: var(--neon-green);
-		font-size: 1.125rem;
-		font-weight: 600;
-		margin: 0;
-		line-height: 1.4;
-	}
-
-	.footer-note {
-		color: var(--text-secondary);
-		font-size: 1rem;
-		margin: 0;
-		line-height: 1.5;
-	}
 
 	/* Founders Section */
 	.founders {
@@ -965,153 +1151,80 @@
 		margin-right: auto;
 	}
 
-	/* Promise Section */
-	.promise {
-		padding: 8rem 0;
-	}
-
-	.promise-content h2 {
-		font-size: clamp(2rem, 4vw, 3rem);
-		font-weight: 700;
-		color: var(--text-primary);
-		text-align: center;
-		margin: 0 0 4rem;
-		line-height: 1.2;
-		max-width: 800px;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 4rem;
-	}
-
-	.promise-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-		gap: 2.5rem;
-	}
-
-	.promise-item {
-		text-align: center;
+	/* Application Section */
+	.application-section {
 		background: var(--bg-glass);
-		border: 1px solid var(--border-medium);
+		padding: 3rem 2rem;
 		border-radius: 20px;
-		padding: 2.5rem 2rem;
 		backdrop-filter: blur(20px);
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-	}
-
-	.promise-item:hover {
-		transform: translateY(-4px);
-		border-color: var(--neon-green);
-		box-shadow: var(--shadow-medium);
-	}
-
-	.promise-icon {
-		font-size: 3rem;
-		margin-bottom: 1.5rem;
-	}
-
-	.promise-item h3 {
-		font-size: 1.25rem;
-		font-weight: 600;
-		color: var(--text-primary);
-		margin: 0 0 1rem;
-	}
-
-	.promise-item p {
-		color: var(--text-secondary);
-		line-height: 1.6;
-		margin: 0;
-	}
-
-	/* Course Details */
-	.course-details {
-		padding: 8rem 0;
-		background: var(--bg-secondary);
-	}
-
-	.details-header {
-		text-align: center;
-		margin-bottom: 4rem;
-	}
-
-	.details-header h2 {
-		font-size: clamp(2.5rem, 5vw, 3.5rem);
-		font-weight: 700;
-		color: var(--text-primary);
-		margin: 0 0 1rem;
-	}
-
-	.details-header p {
-		font-size: 1.125rem;
-		color: var(--text-secondary);
-		margin: 0;
-	}
-
-	.details-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-		gap: 2rem;
-	}
-
-	.detail-card {
-		background: var(--bg-glass);
 		border: 1px solid var(--border-medium);
-		border-radius: 20px;
+		text-align: center;
+	}
+
+	.application-section .main-answer {
+		font-size: clamp(3.5rem, 7vw, 6rem);
+		font-weight: 800;
+		background: linear-gradient(135deg, var(--text-primary) 0%, var(--neon-green) 100%);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		margin: 0 0 2rem;
+		display: block;
+	}
+
+	.condensed-application-note {
+		background: var(--bg-tertiary);
 		padding: 2rem;
-		backdrop-filter: blur(20px);
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		border-radius: 16px;
+		margin: 2rem 0;
+		border: 1px solid var(--border-subtle);
 	}
 
-	.detail-card:hover {
-		transform: translateY(-4px);
-		border-color: var(--neon-green);
-		box-shadow: var(--shadow-medium);
-	}
-
-	.detail-card.featured {
-		border-color: var(--neon-green);
-		background: rgba(0, 255, 136, 0.05);
-	}
-
-	.card-header {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
-		margin-bottom: 1.5rem;
-	}
-
-	.card-icon {
-		font-size: 1.5rem;
-	}
-
-	.card-header h3 {
-		font-size: 1.125rem;
-		font-weight: 600;
-		color: var(--text-primary);
-		margin: 0;
-	}
-
-	.detail-value {
-		font-size: 1.5rem;
-		font-weight: 700;
-		color: var(--neon-green);
-		margin-bottom: 1rem;
-	}
-
-	.card-content p {
+	.condensed-application-note p {
 		color: var(--text-secondary);
-		line-height: 1.6;
-		margin: 0;
+		margin: 0 0 1rem;
+		text-align: left;
 	}
 
-	.investment-note {
-		margin-top: 1rem;
-		padding-top: 1rem;
-		border-top: 1px solid var(--border-subtle);
-		color: var(--text-muted);
-		font-size: 0.875rem;
-		font-style: italic;
+	.condensed-application-note ul {
+		color: var(--text-secondary);
+		text-align: left;
+		margin: 1rem 0 0 1.5rem;
 	}
+
+	.condensed-application-note li {
+		margin-bottom: 0.5rem;
+	}
+
+	.success-section {
+		text-align: center;
+		background: var(--bg-glass);
+		padding: 3rem 2rem;
+		border-radius: 20px;
+		backdrop-filter: blur(20px);
+		border: 1px solid var(--border-medium);
+	}
+
+	.success-icon {
+		font-size: 4rem;
+		margin-bottom: 2rem;
+	}
+
+	.success-section h2 {
+		font-size: 2.5rem;
+		font-weight: 700;
+		color: var(--text-primary);
+		margin: 0 0 1.5rem;
+		line-height: 1.1;
+	}
+
+	.success-message {
+		font-size: 1.125rem;
+		color: var(--text-secondary);
+		margin: 0;
+		line-height: 1.6;
+	}
+
 
 	/* FAQ Section */
 	.faq {
@@ -1263,23 +1376,16 @@
 			padding: 2rem;
 		}
 
-		.modules-grid,
-		.promise-grid,
-		.details-grid,
-		.products-grid {
+		.modules-grid {
 			grid-template-columns: 1fr;
 		}
 
-		.module-card,
-		.product-card {
+		.module-card {
 			padding: 2rem;
 		}
 
 		.course-breakdown,
-		.product-showcase,
 		.founders,
-		.promise,
-		.course-details,
 		.faq,
 		.final-cta {
 			padding: 6rem 0;
@@ -1292,6 +1398,401 @@
 
 		.faq-answer {
 			padding: 0 1.5rem 1.25rem;
+		}
+	}
+
+	/* Application Form Styles */
+	.application-form {
+		padding: 6rem 0;
+		background: var(--bg-secondary);
+	}
+
+	.form-wrapper {
+		background: var(--bg-glass);
+		padding: 3rem;
+		border-radius: 24px;
+		border: 1px solid var(--border-medium);
+		backdrop-filter: blur(20px);
+		box-shadow: var(--shadow-medium);
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+	.application-header {
+		text-align: center;
+		margin-bottom: 3rem;
+		position: relative;
+	}
+
+	.main-answer {
+		font-size: clamp(3.5rem, 7vw, 6rem);
+		font-weight: 800;
+		color: var(--text-primary);
+		margin: 0 0 2rem;
+		letter-spacing: -0.03em;
+		line-height: 1.1;
+		text-align: center;
+		white-space: nowrap;
+		display: inline-block;
+		background: linear-gradient(135deg, var(--text-primary) 0%, var(--neon-green) 100%);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.application-intro {
+		font-size: 1.1rem;
+		color: var(--text-secondary);
+		margin: 2rem 0 0;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		font-weight: 500;
+	}
+
+	.application-subtitle {
+		font-size: 1.125rem;
+		color: var(--text-secondary);
+		margin: 0;
+		line-height: 1.6;
+	}
+
+	/* Progress Bar */
+	.progress-container {
+		margin-bottom: 3rem;
+		text-align: center;
+	}
+
+	.progress-bar {
+		width: 100%;
+		height: 6px;
+		background: var(--bg-tertiary);
+		border-radius: 50px;
+		margin-bottom: 1rem;
+		overflow: hidden;
+	}
+
+	.progress-fill {
+		height: 100%;
+		background: linear-gradient(90deg, var(--neon-green), var(--neon-green-dark));
+		border-radius: 50px;
+		transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.progress-text {
+		font-size: 0.9375rem;
+		color: var(--neon-green);
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	/* Form Sections */
+	.comprehensive-form {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.form-section {
+		opacity: 1;
+		transform: translateX(0);
+		transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.section-header {
+		text-align: center;
+		margin-bottom: 2.5rem;
+		padding-bottom: 1.5rem;
+		border-bottom: 1px solid var(--border-subtle);
+	}
+
+	.section-header h3 {
+		color: var(--text-primary);
+		font-size: 1.75rem;
+		font-weight: 700;
+		margin: 0 0 0.75rem;
+		line-height: 1.2;
+	}
+
+	.section-header p {
+		color: var(--text-secondary);
+		font-size: 1rem;
+		margin: 0;
+		line-height: 1.5;
+	}
+
+	/* Form Grid */
+	.form-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 1.5rem;
+		margin-bottom: 2rem;
+	}
+
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.form-group.full-width {
+		grid-column: 1 / -1;
+	}
+
+	.form-group label {
+		font-weight: 600;
+		color: var(--text-primary);
+		font-size: 1rem;
+		line-height: 1.4;
+	}
+
+	.form-group input,
+	.form-group textarea {
+		padding: 1rem 1.25rem;
+		border: 1px solid var(--border-medium);
+		border-radius: 12px;
+		font-size: 1rem;
+		font-family: inherit;
+		background: var(--bg-glass);
+		color: var(--text-primary);
+		backdrop-filter: blur(20px);
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.form-group input::placeholder,
+	.form-group textarea::placeholder {
+		color: var(--text-muted);
+	}
+
+	.form-group input:focus,
+	.form-group textarea:focus {
+		outline: none;
+		border-color: var(--neon-green);
+		box-shadow: var(--shadow-neon);
+	}
+
+	.form-group input.error,
+	.form-group textarea.error {
+		border-color: #ef4444;
+		box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+	}
+
+	.form-group textarea {
+		resize: vertical;
+		min-height: 120px;
+		line-height: 1.5;
+	}
+
+	/* Character Count */
+	.character-count {
+		font-size: 0.875rem;
+		color: var(--text-muted);
+		text-align: right;
+		margin-top: -0.25rem;
+	}
+
+	.character-count.error {
+		color: #ef4444;
+		font-weight: 600;
+	}
+
+	/* Error Messages */
+	.error-message {
+		color: #ef4444;
+		font-size: 0.875rem;
+		font-weight: 500;
+		margin-top: -0.25rem;
+	}
+
+	/* Form Navigation */
+	.form-navigation {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-top: 3rem;
+		gap: 1rem;
+	}
+
+	.nav-button,
+	.submit-button {
+		padding: 1rem 2rem;
+		font-size: 1rem;
+		font-weight: 600;
+		border-radius: 12px;
+		cursor: pointer;
+		border: none;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		text-decoration: none;
+	}
+
+	.nav-button.primary {
+		background: var(--neon-green);
+		color: var(--bg-primary);
+		box-shadow: 0 4px 20px rgba(0, 255, 136, 0.3);
+	}
+
+	.nav-button.primary:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-neon), 0 6px 30px rgba(0, 255, 136, 0.4);
+	}
+
+	.nav-button.secondary {
+		background: var(--bg-glass);
+		color: var(--text-primary);
+		border: 1px solid var(--border-medium);
+		backdrop-filter: blur(20px);
+	}
+
+	.nav-button.secondary:hover {
+		border-color: var(--neon-green);
+		color: var(--neon-green);
+		box-shadow: var(--shadow-subtle);
+	}
+
+	.submit-button {
+		background: var(--neon-green);
+		color: var(--bg-primary);
+		box-shadow: 0 4px 20px rgba(0, 255, 136, 0.3);
+		padding: 1.25rem 2.5rem;
+		font-size: 1.125rem;
+		margin-left: auto;
+	}
+
+	.submit-button:hover:not(:disabled) {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-neon), 0 8px 40px rgba(0, 255, 136, 0.4);
+	}
+
+	.submit-button:disabled {
+		opacity: 0.7;
+		cursor: not-allowed;
+		transform: none;
+	}
+
+	/* Auto-save Indicator */
+	.auto-save-indicator {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		margin-top: 2rem;
+		padding: 1rem;
+		background: rgba(0, 255, 136, 0.05);
+		border: 1px solid rgba(0, 255, 136, 0.1);
+		border-radius: 8px;
+		color: var(--text-secondary);
+		font-size: 0.875rem;
+	}
+
+	.save-icon {
+		opacity: 0.7;
+	}
+
+	/* Success Page */
+	.success-page {
+		padding: 8rem 0;
+		background: var(--bg-secondary);
+		text-align: center;
+	}
+
+	.success-content {
+		max-width: 700px;
+		margin: 0 auto;
+	}
+
+	.success-icon {
+		font-size: 4rem;
+		margin-bottom: 2rem;
+	}
+
+	.success-content h2 {
+		font-size: 2.5rem;
+		font-weight: 700;
+		color: var(--text-primary);
+		margin: 0 0 1.5rem;
+		line-height: 1.1;
+	}
+
+	.success-message {
+		font-size: 1.125rem;
+		color: var(--text-secondary);
+		margin: 0 0 3rem;
+		line-height: 1.6;
+	}
+
+	.next-steps {
+		text-align: left;
+		background: var(--bg-glass);
+		padding: 2.5rem;
+		border-radius: 16px;
+		margin-bottom: 3rem;
+		border: 1px solid var(--border-medium);
+		backdrop-filter: blur(20px);
+	}
+
+	.next-steps h3 {
+		color: var(--neon-green);
+		margin: 0 0 1.5rem;
+		font-weight: 600;
+	}
+
+	.next-steps ol {
+		color: var(--text-secondary);
+		padding-left: 1.5rem;
+		line-height: 1.6;
+	}
+
+	.next-steps li {
+		margin-bottom: 0.75rem;
+	}
+
+	/* iPhone 15 and similar small screens */
+	@media (max-width: 430px) {
+		.container {
+			padding: 0 1rem;
+		}
+		
+		.title-primary {
+			font-size: clamp(2rem, 8vw, 3rem);
+		}
+		
+		.title-secondary {
+			font-size: clamp(1rem, 4vw, 1.5rem);
+		}
+		
+		.section-header h2 {
+			font-size: clamp(1.8rem, 6vw, 2.5rem);
+		}
+		
+		.main-answer {
+			font-size: clamp(2.2rem, 8vw, 3.5rem);
+		}
+		
+		.cta-content h2 {
+			font-size: clamp(1.8rem, 6vw, 2.5rem);
+		}
+		
+		.faq-header h2 {
+			font-size: clamp(1.8rem, 6vw, 2.5rem);
+		}
+		
+		.application-section {
+			padding: 3rem 0;
+		}
+		
+		.form-section {
+			padding: 1.5rem 1rem;
+		}
+		
+		.hero {
+			padding: 4rem 0;
+		}
+		
+		.hero-metrics {
+			gap: 1.5rem;
 		}
 	}
 

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { TextReveal } from '$lib/components/magicui';
+	
 	let selectedPlan = '';
 	let showDemo = false;
 	let activeFeature = 'automation';
@@ -238,7 +240,7 @@
 	<section class="final-cta">
 		<div class="container">
 			<div class="cta-content">
-				<h2>Ready to Transform Your Customer Service?</h2>
+				<TextReveal text="Ready to Transform Your Customer Service?" />
 				<p>Join hundreds of businesses that trust HeyFront Desk to handle their customer interactions professionally and efficiently.</p>
 				
 				<div class="cta-actions">

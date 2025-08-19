@@ -8,7 +8,8 @@ export default defineConfig({
 		host: true,
 		allowedHosts: [
 			'c70e6d320006.ngrok-free.app',
-			'66720ecc68a6.ngrok-free.app'
+			'66720ecc68a6.ngrok-free.app',
+			'afd489296264.ngrok-free.app'
 		]
 	}
 });

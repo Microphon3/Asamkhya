@@ -78,24 +78,27 @@
 		justify-content: center;
 		gap: 0.75rem;
 		padding: 1rem 2rem;
-		border: none;
+		border: 2px solid var(--neon-green);
 		border-radius: 12px;
-		background: var(--neon-green);
-		color: white;
+		background: var(--bg-glass);
+		color: var(--neon-green);
 		font-weight: 600;
 		font-size: 1.0625rem;
 		text-decoration: none;
 		cursor: pointer;
 		overflow: hidden;
 		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-		box-shadow: 0 4px 20px rgba(0, 123, 255, 0.3);
+		backdrop-filter: blur(20px);
+		box-shadow: 0 4px 20px rgba(0, 255, 136, 0.2);
 		--mouse-x: 50%;
 		--mouse-y: 50%;
 	}
 
 	.interactive-hover-button:hover {
 		transform: translateY(-2px);
-		box-shadow: 0 8px 40px rgba(0, 123, 255, 0.4);
+		background: var(--neon-green);
+		color: var(--bg-primary);
+		box-shadow: 0 8px 40px rgba(0, 255, 136, 0.4);
 	}
 
 	.interactive-hover-button.disabled {

@@ -5,3 +5,7 @@ export { default as InteractiveHoverButton } from './interactive-hover-button.sv
 export { default as MorphingText } from './morphing-text.svelte';
 export { default as LineShadowText } from './line-shadow-text.svelte';
 export { default as Safari } from './safari.svelte';
+export { default as AnimatedThemeToggler } from './animated-theme-toggler.svelte';
+export { default as AnimatedBeamDemo } from './animated-beam-demo.svelte';
+export { default as TextReveal } from './text-reveal.svelte';
+export { default as Globe } from './globe.svelte';

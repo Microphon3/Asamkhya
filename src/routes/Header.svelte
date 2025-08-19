@@ -7,30 +7,49 @@
 <header>
 	<a class="brand" href="/asamkhya">
 		<div class="brand-seal">
-			<svg viewBox="0 0 60 60" class="logo">
+			<svg viewBox="0 0 50 30" class="logo">
 				<defs>
-					<linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+					<linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
 						<stop offset="0%" style="stop-color:var(--neon-green);stop-opacity:1" />
-						<stop offset="100%" style="stop-color:var(--neon-green-dark);stop-opacity:1" />
+						<stop offset="50%" style="stop-color:var(--neon-green-light);stop-opacity:1" />
+						<stop offset="100%" style="stop-color:var(--neon-green);stop-opacity:1" />
 					</linearGradient>
+					<filter id="glow">
+						<feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+						<feMerge> 
+							<feMergeNode in="coloredBlur"/>
+							<feMergeNode in="SourceGraphic"/>
+						</feMerge>
+					</filter>
 				</defs>
-				<circle cx="30" cy="30" r="28" fill="none" stroke="url(#logoGradient)" stroke-width="1" opacity="0.3"/>
-				<rect x="18" y="18" width="24" height="16" rx="2" fill="none" stroke="url(#logoGradient)" stroke-width="2"/>
-				<path d="M22 26L26 30L22 34M34 26L30 30L34 34" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-				<text x="30" y="52" text-anchor="middle" font-size="6" fill="var(--neon-green)" font-family="monospace" font-weight="bold">WEB</text>
+				
+				<!-- Classic infinity symbol with proper mathematical curves -->
+				<path d="M8 15 C8 8, 12 5, 18 8 C20 9, 22 12, 25 15 C28 12, 30 9, 32 8 C38 5, 42 8, 42 15 C42 22, 38 25, 32 22 C30 21, 28 18, 25 15 C22 18, 20 21, 18 22 C12 25, 8 22, 8 15 Z" 
+					  fill="none" 
+					  stroke="url(#logoGradient)" 
+					  stroke-width="3" 
+					  stroke-linecap="round"
+					  stroke-linejoin="round"
+					  filter="url(#glow)"/>
+				
+				<!-- Center connection point -->
+				<circle cx="25" cy="15" r="1" fill="var(--neon-green)" opacity="0.8"/>
 			</svg>
 		</div>
 		<div class="brand-text">
 			<span class="brand-name">ASAMKHYA</span>
-			<span class="brand-tagline">WEB DEVELOPMENT</span>
+			<span class="brand-tagline">AI STATE OF MIND</span>
 		</div>
 	</a>
 
 	<nav>
-		<a href="/asamkhya" class:active={currentPath === '/asamkhya'}>Portfolio</a>
-		<a href="/asamkhya/ai-course" class:active={currentPath?.startsWith('/asamkhya/ai-course')}>AI Course</a>
-		<a href="/asamkhya/about" class:active={currentPath === '/asamkhya/about'}>About</a>
-		<a href="/asamkhya/contact" class:active={currentPath === '/asamkhya/contact'}>Contact</a>
+		<a href="/asamkhya" class:active={currentPath === '/asamkhya'} class="infinity-link">
+			<span class="infinity-symbol">∞</span>
+		</a>
+		<a href="/asamkhya/website" class:active={currentPath?.startsWith('/asamkhya/website')}>Say Cheese</a>
+		<a href="/asamkhya/ai-course" class:active={currentPath?.startsWith('/asamkhya/ai-course')}>Cohort</a>
+		<a href="/asamkhya/about" class:active={currentPath === '/asamkhya/about'}>Team</a>
+		<a href="/asamkhya/contact" class:active={currentPath === '/asamkhya/contact'}>Business</a>
 	</nav>
 </header>
 
@@ -63,35 +82,20 @@
 
 	.brand-seal {
 		width: 50px;
-		height: 50px;
-		background: var(--bg-glass);
-		border-radius: 12px;
+		height: 30px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		border: 1px solid var(--border-medium);
-		position: relative;
-		overflow: hidden;
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-	}
-
-	.brand-seal::before {
-		content: '';
-		position: absolute;
-		inset: 0;
-		background: var(--bg-glass);
-		border-radius: inherit;
 		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 
 	.brand:hover .brand-seal {
-		border-color: var(--neon-green);
-		box-shadow: var(--shadow-neon);
+		transform: scale(1.05);
 	}
 
 	.logo {
-		width: 35px;
-		height: 35px;
+		width: 50px;
+		height: 30px;
 		position: relative;
 		z-index: 1;
 	}
@@ -131,20 +135,9 @@
 		font-size: 0.9375rem;
 		font-weight: 500;
 		position: relative;
-		padding: 0.75rem 1.25rem;
-		border-radius: 8px;
+		padding: 0.75rem 0.5rem;
 		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 		letter-spacing: 0.025em;
-	}
-
-	nav a::before {
-		content: '';
-		position: absolute;
-		inset: 0;
-		background: var(--bg-glass);
-		border-radius: inherit;
-		opacity: 0;
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 
 	nav a:hover {
@@ -152,14 +145,8 @@
 		transform: translateY(-1px);
 	}
 
-	nav a:hover::before {
-		opacity: 1;
-	}
-
 	nav a.active {
 		color: var(--neon-green);
-		background: var(--bg-glass);
-		border: 1px solid var(--border-medium);
 	}
 
 	nav a.active::after {
@@ -173,6 +160,31 @@
 		background: var(--neon-green);
 		border-radius: 50%;
 		box-shadow: 0 0 8px var(--neon-green);
+	}
+
+	.infinity-link {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.infinity-symbol {
+		font-size: 1.5rem;
+		font-weight: 400;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		display: block;
+		line-height: 1;
+	}
+
+	.infinity-link:hover .infinity-symbol {
+		transform: scale(1.1);
+		filter: drop-shadow(0 0 4px var(--neon-green));
+	}
+
+	.infinity-link.active .infinity-symbol {
+		color: var(--neon-green);
+		filter: drop-shadow(0 0 6px var(--neon-green));
 	}
 
 	/* Responsive Design */
@@ -219,6 +231,48 @@
 		nav a {
 			padding: 0.5rem 0.75rem;
 			font-size: 0.8125rem;
+		}
+	}
+
+	/* iPhone 15 and similar small screens */
+	@media (max-width: 430px) {
+		header {
+			padding: 0.75rem 1rem;
+		}
+		
+		.brand {
+			gap: 0.75rem;
+		}
+		
+		.brand-name {
+			font-size: 1rem;
+		}
+		
+		.brand-tagline {
+			font-size: 0.625rem;
+		}
+		
+		.brand-seal {
+			width: 36px;
+			height: 24px;
+		}
+		
+		.logo {
+			width: 36px;
+			height: 24px;
+		}
+		
+		nav {
+			gap: 0.75rem;
+		}
+		
+		nav a {
+			padding: 0.375rem 0.5rem;
+			font-size: 0.75rem;
+		}
+		
+		.infinity-symbol {
+			font-size: 1.25rem;
 		}
 	}
 

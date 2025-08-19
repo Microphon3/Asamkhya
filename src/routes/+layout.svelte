@@ -52,6 +52,11 @@
 		-moz-osx-font-smoothing: grayscale;
 		overflow-x: hidden;
 	}
+	
+	:global(h1, h2, h3, h4, h5, h6) {
+		word-wrap: break-word;
+		hyphens: auto;
+	}
 
 	:global(*, *::before, *::after) {
 		box-sizing: border-box;
