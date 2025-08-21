@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-cloudflare';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -12,7 +12,18 @@ const config = {
 		prerender: {
 			handleHttpError: 'warn',
 			handleMissingId: 'warn',
-			entries: ['/', '/asamkhya', '/asamkhya/assessment', '/asamkhya/about', '/asamkhya/contact']
+			entries: [
+				'/', 
+				'/asamkhya', 
+				'/asamkhya/assessment', 
+				'/asamkhya/about', 
+				'/asamkhya/contact',
+				'/asamkhya/website',
+				'/asamkhya/heyfrontdesk',
+				'/asamkhya/ai-course',
+				'/asamkhya/programs',
+				'/asamkhya/apply'
+			]
 		}
 	}
 };
