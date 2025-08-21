@@ -263,48 +263,6 @@
 		</div>
 	</section>
 
-	<!-- Results Section -->
-	<section class="results">
-		<div class="container">
-			<div class="section-header">
-				<h2>Proven Results</h2>
-				<p>Real outcomes from our program with property owners</p>
-			</div>
-			
-			<div class="results-grid">
-				<div class="result-stat-card">
-					<div class="stat-number">15+</div>
-					<div class="stat-label">Properties Managed</div>
-					<p>Across multiple cities with zero owner involvement</p>
-				</div>
-				
-				<div class="result-stat-card">
-					<div class="stat-number">200+</div>
-					<div class="stat-label">Guests Handled Monthly</div>
-					<p>Complete check-in to check-out management</p>
-				</div>
-				
-				<div class="result-stat-card">
-					<div class="stat-number">24/7</div>
-					<div class="stat-label">Tested Coverage</div>
-					<p>No emergency calls reached property owners</p>
-				</div>
-				
-				<div class="result-stat-card">
-					<div class="stat-number">0%</div>
-					<div class="stat-label">Owner Time Required</div>
-					<p>Complete hands-off property management proven</p>
-				</div>
-			</div>
-			
-			<div class="testimonial-highlight">
-				<blockquote>
-					<p>"I slept peacefully for the first time in years. HeyFrontDesk handled everything - guest issues, vendor coordination, even 2 AM emergencies. Excited for what's coming!"</p>
-					<cite>— Property Owner, Mumbai (3 units)</cite>
-				</blockquote>
-			</div>
-		</div>
-	</section>
 
 	<!-- How it Works - Technical -->
 	<section class="build-section">

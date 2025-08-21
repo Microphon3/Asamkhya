@@ -148,13 +148,10 @@
 		<div class="container">
 			<div class="message-header">
 				<div class="core-proposition">
-					<div class="hero-line-1">
-						<span class="main-question">Cheese sandwich? ... cool.</span>
-					</div>
 					<div class="hero-line-2">
-						<span class="main-answer">Michelin Star grilled cheese? Oh Yeah!!</span>
+						<span class="main-answer">Best "Basic" Websites</span>
 					</div>
-					<p class="core-subtitle">That's us with websites.</p>
+					<p class="core-subtitle">Simple. Premium. Ai Powered.</p>
 				</div>
 				
 			</div>
@@ -1827,13 +1824,17 @@
 
 	/* Typography Hierarchy */
 	.section-title {
-		font-size: clamp(2.5rem, 5vw, 4rem);
+		font-size: clamp(1.8rem, 5vw, 4rem);
 		font-weight: 700;
 		color: var(--text-primary);
 		margin: 0 0 1.5rem;
 		letter-spacing: -0.02em;
-		line-height: 1.1;
+		line-height: 1.2;
 		text-align: center;
+		word-break: normal;
+		overflow-wrap: break-word;
+		hyphens: manual;
+		white-space: normal;
 	}
 
 	.sub-title {
@@ -2031,26 +2032,28 @@
 
 	.help-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-		gap: 1.5rem;
+		grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+		gap: clamp(1.5rem, 4vw, 2rem);
 		position: relative;
 		z-index: 1;
 		max-width: 1000px;
 		margin: 0 auto;
+		width: 100%;
+		box-sizing: border-box;
 	}
 
 	.help-card {
 		background: rgba(255, 255, 255, 0.03);
 		border: 1px solid rgba(255, 255, 255, 0.08);
 		border-radius: 12px;
-		padding: 1.5rem 1.25rem;
+		padding: clamp(1.25rem, 3vw, 1.5rem);
 		text-align: center;
 		backdrop-filter: blur(40px);
 		transition: all 0.2s ease-out;
 		position: relative;
 		overflow: hidden;
-		flex: 1;
-		max-width: 280px;
+		width: 100%;
+		box-sizing: border-box;
 		box-shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
 	}
 
@@ -2380,8 +2383,8 @@
 	}
 	
 	.basicpro-grid {
-		display: grid !important;
-		grid-template-columns: repeat(2, 1fr) !important;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
 		gap: 2rem;
 		margin-bottom: 4rem;
 		max-width: 1000px;
@@ -3413,8 +3416,8 @@
 		.feature-showcase,
 		.basic-layout,
 		.basicpro-grid {
-			grid-template-columns: 1fr;
-			gap: 2rem;
+			grid-template-columns: 1fr !important;
+			gap: 1.5rem;
 		}
 		
 		.basicpro-cards-grid {
@@ -3571,7 +3574,8 @@
 		}
 		
 		.section-title {
-			font-size: clamp(1.8rem, 7vw, 2.5rem);
+			font-size: clamp(1.5rem, 6vw, 2.2rem);
+			line-height: 1.3;
 		}
 		
 		.basic-showcase .section-title {
@@ -3594,12 +3598,16 @@
 
 
 		.help-grid {
-			grid-template-columns: 1fr;
-			gap: 1rem;
+			grid-template-columns: 1fr !important;
+			gap: clamp(1rem, 4vw, 1.5rem);
+			margin: 0 auto;
+			padding: 0;
 		}
 
 		.help-card {
-			padding: 1.5rem;
+			padding: clamp(1rem, 4vw, 1.5rem);
+			width: 100%;
+			max-width: none;
 		}
 
 		.help-icon {

@@ -224,7 +224,7 @@
 				</div>
 				
 				<h1 class="hero-title">
-					<span class="title-primary">Build Like You Mean It</span>
+					<span class="title-primary">Become a Vibe Coder</span>
 					<span class="title-secondary">Acumen-Based Admissions.</span>
 				</h1>
 				
@@ -295,49 +295,9 @@
 		</div>
 	</section>
 
-
-	<!-- Founders Section -->
-	<section class="founders">
+	<!-- Premium Application Section -->
+	<section class="application" id="apply-form">
 		<div class="container">
-			<div class="section-header">
-				<h2>The Teacher & The Student</h2>
-			</div>
-			
-			<div class="founders-grid">
-				<div class="founder-card">
-					<div class="founder-image">
-						<div class="image-placeholder">
-							<div class="placeholder-initials">CT</div>
-						</div>
-						<div class="founder-badge">The Teacher</div>
-					</div>
-					<div class="founder-info">
-						<h3>Chintan Thakkar</h3>
-						<p class="founder-title">One of the most practical hands-on AI minds in this country</p>
-						<p class="founder-bio">
-							Always ahead of the curve. Chintan has spent two decades engrossed in learning and developing AI technologies. Zero fluff approach - deep technical mastery focused on what actually works.
-						</p>
-					</div>
-				</div>
-
-				<div class="founder-card">
-					<div class="founder-image">
-						<div class="image-placeholder">
-							<div class="placeholder-initials">TB</div>
-						</div>
-						<div class="founder-badge">The Student</div>
-					</div>
-					<div class="founder-info">
-						<h3>Tanmay Bahulekar</h3>
-						<p class="founder-title">Operations Mind Turned Builder</p>
-						<p class="founder-bio">
-							College dropout focused on operations and business strategy. Learned to vibe code under Chintan's guidance, turning ideas into tech products that work.
-						</p>
-					</div>
-				</div>
-			</div>
-			
-			<!-- Premium Application Section -->
 			{#if !isSubmitted}
 				<div class="form-wrapper">
 					<div class="application-header">
@@ -750,7 +710,7 @@
 				<h2>Ready to build the future?</h2>
 				<p>Join the first batch of builders.</p>
 				<div class="cta-actions">
-					<a href="/asamkhya/apply" class="cta-primary large">
+					<a href="#apply-form" class="cta-primary large">
 						<span>Apply Now</span>
 						<svg width="16" height="16" viewBox="0 0 16 16" fill="none">
 							<path d="M8 0L8 14M8 14L14 8M8 14L2 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

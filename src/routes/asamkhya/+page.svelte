@@ -66,7 +66,7 @@
 								</svg>
 							</div>
 							<h3>HeyFrontDesk</h3>
-							<p>Redefining Short-Term Rental Workflow</p>
+							<p>Redefining STR Workflow</p>
 							<InteractiveHoverButton href="/asamkhya/heyfrontdesk" className="minimal">
 								<span>Explore</span>
 								<svg width="14" height="14" viewBox="0 0 16 16" fill="none">
