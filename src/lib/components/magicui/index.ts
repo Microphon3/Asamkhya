@@ -9,3 +9,12 @@ export { default as AnimatedThemeToggler } from './animated-theme-toggler.svelte
 export { default as AnimatedBeamDemo } from './animated-beam-demo.svelte';
 export { default as TextReveal } from './text-reveal.svelte';
 export { default as Globe } from './globe.svelte';
+export { default as Marquee } from './marquee.svelte';
+export { default as BentoGrid } from './bento-grid.svelte';
+export { default as BentoCard } from './bento-card.svelte';
+export { default as AnimatedList } from './animated-list.svelte';
+export { default as Calendar } from './calendar.svelte';
+export { default as IntegrationsDemo } from './integrations-demo.svelte';
+export { default as OrbitingCircles } from './orbiting-circles.svelte';
+export { default as AIAgentIcons } from './ai-agent-icons.svelte';
+export { default as PremiumGravitationalSystem } from './premium-gravitational-system.svelte';

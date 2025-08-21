@@ -46,7 +46,8 @@
 		<a href="/asamkhya" class:active={currentPath === '/asamkhya'} class="infinity-link">
 			<span class="infinity-symbol">∞</span>
 		</a>
-		<a href="/asamkhya/website" class:active={currentPath?.startsWith('/asamkhya/website')}>Say Cheese</a>
+		<a href="/asamkhya/website" class:active={currentPath?.startsWith('/asamkhya/website')}>Webby</a>
+		<a href="/asamkhya/heyfrontdesk" class:active={currentPath?.startsWith('/asamkhya/heyfrontdesk')}>HeyFrontDesk</a>
 		<a href="/asamkhya/ai-course" class:active={currentPath?.startsWith('/asamkhya/ai-course')}>Cohort</a>
 		<a href="/asamkhya/about" class:active={currentPath === '/asamkhya/about'}>Team</a>
 		<a href="/asamkhya/contact" class:active={currentPath === '/asamkhya/contact'}>Business</a>
@@ -263,16 +264,16 @@
 		}
 		
 		nav {
-			gap: 0.75rem;
+			gap: 0.5rem;
 		}
 		
 		nav a {
-			padding: 0.375rem 0.5rem;
-			font-size: 0.75rem;
+			padding: 0.25rem 0.375rem;
+			font-size: 0.7rem;
 		}
 		
 		.infinity-symbol {
-			font-size: 1.25rem;
+			font-size: 1.1rem;
 		}
 	}
 
