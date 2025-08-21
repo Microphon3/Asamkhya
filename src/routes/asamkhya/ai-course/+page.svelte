@@ -771,7 +771,9 @@
 	.container {
 		max-width: 1200px;
 		margin: 0 auto;
-		padding: 0 2rem;
+		padding: 0 clamp(1rem, 4vw, 2rem);
+		width: 100%;
+		box-sizing: border-box;
 	}
 
 	/* Hero Section */

@@ -469,12 +469,14 @@
 	.container {
 		max-width: 1200px;
 		margin: 0 auto;
-		padding: 0 2rem;
+		padding: 0 clamp(1rem, 4vw, 2rem);
+		width: 100%;
+		box-sizing: border-box;
 	}
 
 	/* Hero Section */
 	.hero {
-		padding: 8rem 0 6rem;
+		padding: clamp(4rem, 10vw, 8rem) 0 clamp(3rem, 8vw, 6rem);
 		position: relative;
 		overflow: hidden;
 		background: var(--bg-secondary);
@@ -915,8 +917,8 @@
 
 	.form-grid {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 1.5rem;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: clamp(1rem, 3vw, 1.5rem);
 		margin-bottom: 2rem;
 	}
 
@@ -1824,8 +1826,8 @@
 
 	.waitlist-content {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 3rem;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: clamp(1.5rem, 4vw, 3rem);
 		margin-top: 3rem;
 		align-items: start;
 	}
@@ -1844,8 +1846,8 @@
 
 	.form-grid {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 1.5rem;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: clamp(1rem, 3vw, 1.5rem);
 		margin-bottom: 2rem;
 	}
 
@@ -2413,8 +2415,8 @@
 		align-items: center;
 		justify-content: center;
 		height: 100%;
-		min-height: 400px;
-		padding: 1rem;
+		min-height: clamp(300px, 50vw, 400px);
+		padding: clamp(0.5rem, 2vw, 1rem);
 	}
 
 	:global(.agents-orbit-demo) {
@@ -2422,8 +2424,60 @@
 		padding: 0;
 		width: 100%;
 		height: auto;
-		max-width: 297px;
-		max-height: 297px;
+		max-width: clamp(200px, 40vw, 297px);
+		max-height: clamp(200px, 40vw, 297px);
+	}
+
+	/* Enhanced Mobile-First Responsive Design */
+	@media (max-width: 480px) {
+		.hero {
+			padding: clamp(2rem, 8vw, 4rem) 0;
+		}
+		
+		.waitlist-content {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+		
+		.form-grid {
+			grid-template-columns: 1fr;
+			gap: 1rem;
+		}
+		
+		.orbit-section {
+			min-height: 250px;
+		}
+		
+		:global(.agents-orbit-demo) {
+			max-width: 200px;
+			max-height: 200px;
+		}
+		
+		.waitlist-submit-btn {
+			width: 100%;
+			min-height: 48px;
+			font-size: 1rem;
+			padding: 1rem;
+			touch-action: manipulation;
+		}
+	}
+
+	/* Accessibility and Performance */
+	@media (prefers-reduced-motion: reduce) {
+		* {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+		}
+	}
+
+	/* High contrast mode support */
+	@media (prefers-contrast: high) {
+		.waitlist-form-container,
+		.problem-card,
+		.solution-card {
+			border: 2px solid var(--neon-green);
+		}
 	}
 
 	/* Bento Grid Customizations */

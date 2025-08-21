@@ -638,12 +638,14 @@
 	.container {
 		max-width: 1200px;
 		margin: 0 auto;
-		padding: 0 2rem;
+		padding: 0 clamp(1rem, 4vw, 2rem);
+		width: 100%;
+		box-sizing: border-box;
 	}
 
 	/* Hero Section */
 	.hero {
-		padding: 8rem 0 6rem;
+		padding: clamp(4rem, 10vw, 8rem) 0 clamp(3rem, 8vw, 6rem);
 		position: relative;
 		overflow: hidden;
 	}
@@ -982,8 +984,8 @@
 
 	.samples-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-		gap: 3rem;
+		grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
+		gap: clamp(2rem, 4vw, 3rem);
 		max-width: 1400px;
 		margin: 0 auto;
 	}
@@ -1237,8 +1239,8 @@
 
 	.portfolio-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-		gap: 2.5rem;
+		grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
+		gap: clamp(1.5rem, 4vw, 2.5rem);
 	}
 
 	.portfolio-card {
@@ -1395,8 +1397,8 @@
 
 	.process-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-		gap: 2.5rem;
+		grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+		gap: clamp(1.5rem, 4vw, 2.5rem);
 	}
 
 	.process-step {
@@ -3667,6 +3669,70 @@
 
 		.pricing-banner {
 			padding: 1rem;
+		}
+	}
+
+	/* Enhanced Mobile-First Responsive Design */
+	@media (max-width: 480px) {
+		.hero {
+			padding: clamp(2rem, 8vw, 4rem) 0;
+		}
+		
+		.portfolio-grid,
+		.samples-grid {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+		
+		.process-grid {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+		
+		.service-card {
+			padding: clamp(1rem, 3vw, 1.5rem) clamp(0.75rem, 2vw, 1.25rem);
+		}
+		
+		.portfolio-card {
+			min-height: auto;
+		}
+		
+		:global(.sample-browser) {
+			height: 200px !important;
+		}
+	}
+
+	/* Touch-friendly enhancements */
+	@media (hover: none) and (pointer: coarse) {
+		.service-card,
+		.portfolio-card,
+		.help-card,
+		.fun-card {
+			transform: none !important;
+		}
+		
+		.service-card:active,
+		.portfolio-card:active {
+			transform: scale(0.98);
+		}
+	}
+
+	/* Accessibility and Performance */
+	@media (prefers-reduced-motion: reduce) {
+		* {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+		}
+	}
+
+	/* High contrast mode support */
+	@media (prefers-contrast: high) {
+		.service-card,
+		.portfolio-card,
+		.help-card,
+		.fun-card {
+			border: 2px solid var(--neon-green);
 		}
 	}
 

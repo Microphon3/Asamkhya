@@ -149,7 +149,7 @@
 	.container {
 		max-width: 1200px;
 		margin: 0 auto;
-		padding: 0 2rem;
+		padding: 0 clamp(1rem, 4vw, 2rem);
 		width: 100%;
 		box-sizing: border-box;
 	}
@@ -163,7 +163,7 @@
 		position: relative;
 		background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
 		width: 100%;
-		padding: 4rem 0;
+		padding: clamp(2rem, 8vw, 4rem) 0;
 	}
 
 	.hero-content {
@@ -358,13 +358,14 @@
 	}
 
 	.paths-grid {
-		display: flex;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 		justify-content: center;
-		gap: 2rem;
+		gap: clamp(1rem, 3vw, 2rem);
 		margin: 2rem auto;
-		max-width: 700px;
+		max-width: 1000px;
 		width: 100%;
-		padding: 0 2rem;
+		padding: 0 clamp(1rem, 4vw, 2rem);
 		box-sizing: border-box;
 	}
 
@@ -372,18 +373,16 @@
 		background: rgba(255, 255, 255, 0.03);
 		border: 1px solid rgba(255, 255, 255, 0.08);
 		border-radius: 12px;
-		padding: 1.5rem 1.25rem;
+		padding: clamp(1.25rem, 3vw, 1.5rem) clamp(1rem, 2vw, 1.25rem);
 		text-align: center;
 		backdrop-filter: blur(40px);
 		transition: all 0.2s ease-out;
 		position: relative;
 		overflow: hidden;
-		flex: 1;
-		max-width: 280px;
-		min-width: 260px;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+		min-height: 240px;
 	}
 
 	.path-card::before {
@@ -429,17 +428,19 @@
 	}
 
 	.path-card h3 {
-		font-size: 1.4rem;
+		font-size: clamp(1.125rem, 2.5vw, 1.4rem);
 		font-weight: 700;
 		margin-bottom: 0.75rem;
 		color: var(--text-primary);
+		line-height: 1.2;
 	}
 
 	.path-card p {
-		font-size: 1rem;
+		font-size: clamp(0.875rem, 2vw, 1rem);
 		color: var(--text-secondary);
 		line-height: 1.4;
 		margin-bottom: 1.5rem;
+		flex-grow: 1;
 	}
 
 	/* Ensure consistent button sizes */
@@ -452,109 +453,131 @@
 		align-items: center;
 		justify-content: center;
 		gap: 0.5rem;
-		font-size: 1rem;
+		font-size: clamp(0.875rem, 2vw, 1rem);
 		font-weight: 600;
-		padding: 0.75rem 1.5rem;
+		padding: clamp(0.625rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
 		box-sizing: border-box;
+		touch-action: manipulation;
 	}
 
 
-	/* Responsive Design */
-	@media (max-width: 1024px) {
-		.container {
-			padding: 0 1.5rem;
+	/* Responsive Design - Mobile First Approach */
+	
+	/* Small Mobile: 320px - 480px */
+	@media (max-width: 480px) {
+		.hero {
+			min-height: 100svh; /* Support for modern mobile browsers */
+			padding: clamp(1rem, 6vw, 2rem) 0;
 		}
-
+		
 		.hero-content {
 			max-width: 100%;
 		}
-
-
-		.services-section {
+		
+		:global(.company-name) {
+			font-size: clamp(2rem, 14vw, 3rem);
+			margin-bottom: 1rem;
+		}
+		
+		.badge-text {
+			font-size: 0.875rem;
+			padding: 0.375rem 1rem;
+		}
+		
+		.paths-title {
+			font-size: clamp(1.5rem, 6vw, 2rem);
+			margin-bottom: 2rem;
+		}
+		
+		.paths-grid {
+			grid-template-columns: 1fr;
 			max-width: 100%;
+		}
+		
+		.path-card {
+			min-height: 200px;
+		}
+		
+		.path-icon {
+			width: 48px;
+			height: 48px;
+			margin-bottom: 1rem;
 		}
 	}
 
+	/* Mobile/Large Mobile: 481px - 768px */
 	@media (max-width: 768px) {
-		.container {
-			padding: 0 1rem;
+		.hero {
+			min-height: 100svh;
 		}
-
+		
 		:global(.company-name) {
 			font-size: clamp(2.5rem, 12vw, 4rem);
 		}
-
-		.services-section {
-			flex-direction: column;
-			gap: 2rem;
-			margin: 4rem auto;
-			padding: 0 1rem;
-			max-width: 100%;
-		}
-
-		.service-card {
-			padding: 2rem 1.5rem;
-			max-width: 100%;
-		}
-
-		.service-icon {
-			width: 55px;
-			height: 55px;
-			margin-bottom: 1.25rem;
-		}
-
-
+		
 		.paths-grid {
-			flex-direction: column;
-			gap: 2rem;
-			max-width: 400px;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			max-width: 600px;
 		}
-
-		.path-card {
-			padding: 2rem 1.5rem;
-			max-width: 100%;
+		
+		.tech-stack-section,
+		.paths-section {
+			margin: clamp(3rem, 8vw, 6rem) auto;
 		}
-
-
-		.paths-title {
-			font-size: 2rem;
-		}
-
 	}
 
-	@media (max-width: 480px) {
-		.container {
-			padding: 0 0.75rem;
-		}
-
+	/* Tablet: 769px - 1024px */
+	@media (min-width: 769px) and (max-width: 1024px) {
 		.hero-content {
 			max-width: 100%;
 		}
-
-
-		.services-section {
-			margin: 3rem auto;
-			padding: 0 0.75rem;
-			gap: 1.5rem;
+		
+		.paths-grid {
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			max-width: 900px;
 		}
+	}
 
-		.service-card {
-			padding: 2rem 1.5rem;
+	/* Desktop: 1025px+ */
+	@media (min-width: 1025px) {
+		.paths-grid {
+			grid-template-columns: repeat(3, 1fr);
+			max-width: 1000px;
 		}
-
-		.service-icon {
-			width: 60px;
-			height: 60px;
+		
+		.hero {
+			min-height: 100vh;
 		}
+	}
 
-
-		.paths-section {
-			margin: 3rem 0;
+	/* Ultra-wide: 1440px+ */
+	@media (min-width: 1441px) {
+		.container {
+			max-width: 1400px;
 		}
+		
+		.paths-grid {
+			max-width: 1200px;
+		}
+	}
 
+	/* Accessibility: Reduce motion */
+	@media (prefers-reduced-motion: reduce) {
+		* {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+		}
+	}
+
+	/* High contrast mode support */
+	@media (prefers-contrast: high) {
 		.path-card {
-			padding: 1.5rem 1rem;
+			border: 2px solid var(--neon-green);
 		}
-
+		
+		.path-card h3 {
+			color: var(--neon-green);
+		}
 	}
 </style>
