@@ -1470,10 +1470,13 @@
 
 	.section-header h3 {
 		color: var(--text-primary);
-		font-size: 1.75rem;
+		font-size: clamp(1.5rem, 4vw, 1.75rem);
 		font-weight: 700;
 		margin: 0 0 0.75rem;
 		line-height: 1.2;
+		word-break: normal;
+		overflow-wrap: break-word;
+		hyphens: manual;
 	}
 
 	.section-header p {
@@ -1486,9 +1489,11 @@
 	/* Form Grid */
 	.form-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-		gap: 1.5rem;
+		grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+		gap: clamp(1rem, 3vw, 1.5rem);
 		margin-bottom: 2rem;
+		width: 100%;
+		box-sizing: border-box;
 	}
 
 	.form-group {
@@ -1510,15 +1515,18 @@
 
 	.form-group input,
 	.form-group textarea {
-		padding: 1rem 1.25rem;
+		padding: clamp(0.875rem, 3vw, 1rem) clamp(1rem, 3vw, 1.25rem);
 		border: 1px solid var(--border-medium);
 		border-radius: 12px;
-		font-size: 1rem;
+		font-size: clamp(0.875rem, 3vw, 1rem);
 		font-family: inherit;
 		background: var(--bg-glass);
 		color: var(--text-primary);
 		backdrop-filter: blur(20px);
 		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		width: 100%;
+		box-sizing: border-box;
+		min-height: 48px; /* Touch-friendly minimum */
 	}
 
 	.form-group input::placeholder,
@@ -1747,6 +1755,26 @@
 		
 		.form-section {
 			padding: 1.5rem 1rem;
+		}
+		
+		.section-header h3 {
+			font-size: clamp(1.25rem, 5vw, 1.5rem);
+			line-height: 1.3;
+		}
+		
+		.form-grid {
+			grid-template-columns: 1fr;
+			gap: 1rem;
+		}
+		
+		.form-group input,
+		.form-group textarea {
+			font-size: 16px; /* Prevents zoom on iOS */
+			padding: 1rem;
+		}
+		
+		.form-group label {
+			font-size: 0.9rem;
 		}
 		
 		.hero {

@@ -1784,10 +1784,12 @@
 
 	.waitlist-content {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
 		gap: clamp(1.5rem, 4vw, 3rem);
 		margin-top: 3rem;
 		align-items: start;
+		width: 100%;
+		box-sizing: border-box;
 	}
 
 	.waitlist-form-container {
@@ -2373,8 +2375,10 @@
 		align-items: center;
 		justify-content: center;
 		height: 100%;
-		min-height: clamp(300px, 50vw, 400px);
+		min-height: clamp(250px, 40vw, 350px);
 		padding: clamp(0.5rem, 2vw, 1rem);
+		width: 100%;
+		box-sizing: border-box;
 	}
 
 	:global(.agents-orbit-demo) {
@@ -2403,12 +2407,13 @@
 		}
 		
 		.orbit-section {
-			min-height: 250px;
+			min-height: clamp(200px, 35vw, 250px);
+			padding: 1rem 0;
 		}
 		
 		:global(.agents-orbit-demo) {
-			max-width: 200px;
-			max-height: 200px;
+			max-width: clamp(180px, 35vw, 220px);
+			max-height: clamp(180px, 35vw, 220px);
 		}
 		
 		.waitlist-submit-btn {
