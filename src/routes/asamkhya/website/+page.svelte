@@ -155,18 +155,6 @@
 						<span class="main-answer">Michelin Star grilled cheese? Oh Yeah!!</span>
 					</div>
 					<p class="core-subtitle">That's us with websites.</p>
-					
-					<div class="voice-note-section">
-						<button class="voice-note-button">
-							<span class="button-text">Leave A Voice Note</span>
-							<svg class="button-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none">
-								<path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-							</svg>
-						</button>
-						<div class="consultation-text">
-							<span>Free Consultation • Intelligent Automation</span>
-						</div>
-					</div>
 				</div>
 				
 			</div>
@@ -536,7 +524,7 @@
 		<Meteors number={30} />
 		<div class="container">
 			<div class="cta-content">
-				<h2>Brief Mr. Satellite Now</h2>
+				<h2>What would you like to build?</h2>
 				<div class="cta-actions">
 					<InteractiveHoverButton href="/asamkhya/contact" className="large">
 						<span>Leave A Voice Note</span>
@@ -787,12 +775,12 @@
 
 	.service-card {
 		text-align: center;
-		padding: 1.5rem;
-		background: var(--bg-glass);
-		border: 1px solid var(--border-medium);
-		border-radius: 16px;
-		backdrop-filter: blur(20px);
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		padding: 1.5rem 1.25rem;
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 12px;
+		backdrop-filter: blur(40px);
+		transition: all 0.2s ease-out;
 	}
 
 	.service-card:hover {
@@ -1082,10 +1070,11 @@
 	}
 
 	.content-card {
-		background: rgba(255, 255, 255, 0.2);
-		border-radius: 12px;
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 8px;
 		height: 80px;
-		backdrop-filter: blur(10px);
+		backdrop-filter: blur(40px);
 	}
 
 	/* Restaurant Site */
@@ -1253,12 +1242,12 @@
 	}
 
 	.portfolio-card {
-		background: var(--bg-glass);
-		border: 1px solid var(--border-medium);
-		border-radius: 20px;
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 12px;
 		overflow: hidden;
-		backdrop-filter: blur(20px);
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		backdrop-filter: blur(40px);
+		transition: all 0.2s ease-out;
 	}
 
 	.portfolio-card:hover {
@@ -2003,60 +1992,6 @@
 		opacity: 0.6;
 	}
 
-	/* Voice Note Button Section */
-	.voice-note-section {
-		margin-top: 3rem;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 1rem;
-	}
-
-	.voice-note-button {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.75rem;
-		padding: 1rem 2rem;
-		background: transparent;
-		border: 2px solid #00d9ff;
-		border-radius: 12px;
-		color: #00d9ff;
-		font-weight: 600;
-		font-size: 1.1rem;
-		text-transform: none;
-		letter-spacing: 0.02em;
-		cursor: pointer;
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-		position: relative;
-		overflow: hidden;
-	}
-
-	.voice-note-button:hover {
-		background: rgba(0, 217, 255, 0.1);
-		border-color: #33e1ff;
-		color: #33e1ff;
-		transform: translateY(-2px);
-		box-shadow: 0 8px 25px rgba(0, 217, 255, 0.2);
-	}
-
-	.voice-note-button:active {
-		transform: translateY(0);
-	}
-
-	.button-text {
-		font-size: 1.1rem;
-		font-weight: 600;
-	}
-
-	.button-arrow {
-		width: 16px;
-		height: 16px;
-		transition: transform 0.3s ease;
-	}
-
-	.voice-note-button:hover .button-arrow {
-		transform: translateY(2px);
-	}
 
 	.consultation-text {
 		color: rgba(255, 255, 255, 0.7);
@@ -2103,18 +2038,18 @@
 	}
 
 	.help-card {
-		background: linear-gradient(135deg, rgba(0, 212, 255, 0.02) 0%, rgba(26, 26, 26, 0.6) 100%);
-		border: 1px solid rgba(0, 212, 255, 0.15);
-		border-radius: 16px;
-		padding: 1.75rem 1.25rem;
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 12px;
+		padding: 1.5rem 1.25rem;
 		text-align: center;
-		backdrop-filter: blur(15px);
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		backdrop-filter: blur(40px);
+		transition: all 0.2s ease-out;
 		position: relative;
 		overflow: hidden;
 		flex: 1;
 		max-width: 280px;
-		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+		box-shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
 	}
 
 	.help-card:hover {
@@ -2499,12 +2434,12 @@
 
 	/* Fun Cards */
 	.fun-card {
-		background: var(--bg-glass);
-		border: 1px solid var(--border-medium);
-		border-radius: 24px;
-		padding: 2rem;
-		backdrop-filter: blur(20px);
-		transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 12px;
+		padding: 1.5rem 1.25rem;
+		backdrop-filter: blur(40px);
+		transition: all 0.2s ease-out;
 		position: relative;
 		overflow: hidden;
 		text-align: left;
@@ -2999,12 +2934,12 @@
 	}
 
 	.proof-card {
-		background: var(--bg-glass);
-		border: 1px solid var(--border-medium);
-		border-radius: 16px;
-		padding: 2rem;
-		backdrop-filter: blur(20px);
-		transition: all 0.3s ease;
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 12px;
+		padding: 1.5rem 1.25rem;
+		backdrop-filter: blur(40px);
+		transition: all 0.2s ease-out;
 		height: 100%;
 	}
 	
@@ -3417,20 +3352,6 @@
 			padding: 6rem 0;
 		}
 		
-		.voice-note-section {
-			margin-top: 2rem;
-			gap: 0.75rem;
-		}
-
-		.voice-note-button {
-			padding: 0.875rem 1.5rem;
-			font-size: 1rem;
-			gap: 0.5rem;
-		}
-
-		.button-text {
-			font-size: 1rem;
-		}
 
 		.consultation-text {
 			font-size: 0.85rem;
@@ -3620,10 +3541,12 @@
 
 		.main-question {
 			font-size: clamp(1.8rem, 8vw, 3rem);
+			white-space: normal;
 		}
 
 		.main-answer {
 			font-size: clamp(2rem, 9vw, 4rem);
+			white-space: normal;
 		}
 	}
 
@@ -3636,11 +3559,13 @@
 		.main-question {
 			font-size: clamp(1.4rem, 6vw, 2.2rem);
 			line-height: 1.3;
+			white-space: normal;
 		}
 
 		.main-answer {
 			font-size: clamp(1.6rem, 7vw, 2.8rem);
 			line-height: 1.2;
+			white-space: normal;
 		}
 		
 		.section-title {

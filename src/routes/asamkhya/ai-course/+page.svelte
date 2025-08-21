@@ -950,12 +950,12 @@
 	}
 
 	.module-card {
-		background: var(--bg-glass);
-		border: 1px solid var(--border-medium);
-		border-radius: 20px;
-		padding: 3rem;
-		backdrop-filter: blur(20px);
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 12px;
+		padding: 2rem 1.5rem;
+		backdrop-filter: blur(40px);
+		transition: all 0.2s ease-out;
 		position: relative;
 	}
 
@@ -1053,12 +1053,12 @@
 	}
 
 	.founder-card {
-		background: var(--bg-glass);
-		border: 1px solid var(--border-medium);
-		border-radius: 24px;
-		padding: 2.5rem;
-		backdrop-filter: blur(20px);
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 12px;
+		padding: 2rem 1.5rem;
+		backdrop-filter: blur(40px);
+		transition: all 0.2s ease-out;
 	}
 
 	.founder-card:hover {

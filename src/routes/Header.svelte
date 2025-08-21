@@ -1,7 +1,41 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	
-	$: currentPath = $page.url?.pathname;
+	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
+	
+	let currentPath = $derived($page.url?.pathname);
+	
+	let isMenuOpen = $state(false);
+	
+	function toggleMenu() {
+		isMenuOpen = !isMenuOpen;
+	}
+	
+	function closeMenu() {
+		isMenuOpen = false;
+	}
+
+	function handleClickOutside(event: MouseEvent) {
+		const target = event.target as HTMLElement;
+		const mobileNav = document.querySelector('.mobile-nav');
+		const menuToggle = document.querySelector('.menu-toggle');
+		
+		if (isMenuOpen && mobileNav && menuToggle) {
+			if (!mobileNav.contains(target) && !menuToggle.contains(target)) {
+				closeMenu();
+			}
+		}
+	}
+
+	onMount(() => {
+		if (browser) {
+			document.addEventListener('click', handleClickOutside);
+			return () => {
+				document.removeEventListener('click', handleClickOutside);
+			};
+		}
+	});
 </script>
 
 <header>
@@ -42,7 +76,17 @@
 		</div>
 	</a>
 
-	<nav>
+	<!-- Mobile menu button -->
+	<button class="menu-toggle" onclick={toggleMenu} aria-label="Toggle menu">
+		<div class="hamburger-lines">
+			<div class="line"></div>
+			<div class="line"></div>
+			<div class="line"></div>
+		</div>
+	</button>
+
+	<!-- Desktop navigation -->
+	<nav class="desktop-nav">
 		<a href="/asamkhya" class:active={currentPath === '/asamkhya'} class="infinity-link">
 			<span class="infinity-symbol">∞</span>
 		</a>
@@ -51,6 +95,38 @@
 		<a href="/asamkhya/ai-course" class:active={currentPath?.startsWith('/asamkhya/ai-course')}>Cohort</a>
 		<a href="/asamkhya/about" class:active={currentPath === '/asamkhya/about'}>Team</a>
 		<a href="/asamkhya/contact" class:active={currentPath === '/asamkhya/contact'}>Business</a>
+	</nav>
+
+	<!-- Mobile navigation overlay -->
+	<div class="mobile-nav-overlay" class:open={isMenuOpen}></div>
+	<nav class="mobile-nav" class:open={isMenuOpen}>
+		<div class="mobile-nav-header">
+			<div class="mobile-brand">
+				<span class="mobile-brand-name">ASAMKHYA</span>
+				<span class="mobile-brand-tagline">AI STATE OF MIND</span>
+			</div>
+			<button class="close-btn" onclick={closeMenu} aria-label="Close menu">×</button>
+		</div>
+		<div class="mobile-nav-links">
+			<a href="/asamkhya" class:active={currentPath === '/asamkhya'} onclick={closeMenu}>
+				<span>Home</span>
+			</a>
+			<a href="/asamkhya/website" class:active={currentPath?.startsWith('/asamkhya/website')} onclick={closeMenu}>
+				<span>Webby</span>
+			</a>
+			<a href="/asamkhya/heyfrontdesk" class:active={currentPath?.startsWith('/asamkhya/heyfrontdesk')} onclick={closeMenu}>
+				<span>HeyFrontDesk</span>
+			</a>
+			<a href="/asamkhya/ai-course" class:active={currentPath?.startsWith('/asamkhya/ai-course')} onclick={closeMenu}>
+				<span>Cohort</span>
+			</a>
+			<a href="/asamkhya/about" class:active={currentPath === '/asamkhya/about'} onclick={closeMenu}>
+				<span>Team</span>
+			</a>
+			<a href="/asamkhya/contact" class:active={currentPath === '/asamkhya/contact'} onclick={closeMenu}>
+				<span>Business</span>
+			</a>
+		</div>
 	</nav>
 </header>
 
@@ -124,7 +200,7 @@
 		line-height: 1;
 	}
 
-	nav {
+	nav.desktop-nav {
 		display: flex;
 		gap: 2rem;
 		align-items: center;
@@ -194,7 +270,7 @@
 			padding: 1rem 2rem;
 		}
 		
-		nav {
+		nav.desktop-nav {
 			gap: 1.5rem;
 		}
 	}
@@ -218,7 +294,7 @@
 			height: 30px;
 		}
 		
-		nav {
+		nav.desktop-nav {
 			gap: 1rem;
 		}
 		
@@ -263,7 +339,7 @@
 			height: 24px;
 		}
 		
-		nav {
+		nav.desktop-nav {
 			gap: 0.5rem;
 		}
 		
@@ -274,6 +350,212 @@
 		
 		.infinity-symbol {
 			font-size: 1.1rem;
+		}
+	}
+
+	/* Mobile Navigation Styles */
+	.menu-toggle {
+		display: none;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0.5rem;
+		z-index: 110;
+		position: relative;
+		touch-action: manipulation;
+	}
+
+	.hamburger-lines {
+		width: 24px;
+		height: 18px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	.line {
+		width: 100%;
+		height: 3px;
+		background-color: #ffffff;
+		border-radius: 2px;
+	}
+
+	.mobile-nav-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0, 0, 0, 0.5);
+		backdrop-filter: blur(4px);
+		z-index: 105;
+		opacity: 0;
+		visibility: hidden;
+		transition: all 0.3s ease;
+		cursor: pointer;
+	}
+
+	.mobile-nav-overlay.open {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: all;
+	}
+
+	.mobile-nav {
+		position: fixed;
+		top: 0;
+		right: -100%;
+		width: 100%;
+		max-width: 320px;
+		height: 100vh;
+		background: rgba(26, 26, 26, 0.98);
+		backdrop-filter: blur(20px);
+		border-left: 1px solid var(--border-subtle);
+		z-index: 110;
+		transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		display: flex;
+		flex-direction: column;
+		box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+	}
+
+	.mobile-nav.open {
+		right: 0;
+	}
+
+	.mobile-nav-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 1.5rem 2rem;
+		border-bottom: 1px solid var(--border-subtle);
+	}
+
+	.mobile-brand {
+		display: flex;
+		flex-direction: column;
+		gap: 0.125rem;
+	}
+
+	.mobile-brand-name {
+		color: var(--text-primary);
+		font-weight: 700;
+		font-size: 1.125rem;
+		letter-spacing: 0.05em;
+		line-height: 1;
+	}
+
+	.mobile-brand-tagline {
+		color: var(--neon-green);
+		font-weight: 500;
+		font-size: 0.625rem;
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		line-height: 1;
+	}
+
+	.close-btn {
+		background: none;
+		border: none;
+		color: var(--text-secondary);
+		font-size: 1.5rem;
+		cursor: pointer;
+		padding: 0.5rem;
+		transition: color 0.3s ease;
+		width: 40px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.close-btn:hover {
+		color: var(--text-primary);
+	}
+
+	.mobile-nav-links {
+		flex: 1;
+		padding: 2rem 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.mobile-nav-links a {
+		display: block;
+		padding: 1.25rem 2rem;
+		text-decoration: none;
+		color: var(--text-secondary);
+		font-size: 1.125rem;
+		font-weight: 500;
+		transition: all 0.3s ease;
+		border-left: 3px solid transparent;
+		letter-spacing: 0.025em;
+	}
+
+	.mobile-nav-links a:hover {
+		color: var(--text-primary);
+		background: rgba(255, 255, 255, 0.05);
+		border-left-color: var(--neon-green);
+	}
+
+	.mobile-nav-links a.active {
+		color: var(--neon-green);
+		background: rgba(0, 255, 136, 0.1);
+		border-left-color: var(--neon-green);
+	}
+	
+	/* Remove the dot indicator from mobile nav */
+	.mobile-nav-links a.active::after {
+		display: none;
+	}
+
+
+
+	/* Mobile Responsive Breakpoints - Start with very wide to catch all mobile */
+	@media (max-width: 1024px) {
+		.desktop-nav {
+			display: none !important;
+		}
+
+		.menu-toggle {
+			display: block !important;
+		}
+	}
+
+	/* Tablet and Mobile */
+	@media (max-width: 768px) {
+		.desktop-nav {
+			display: none !important;
+		}
+
+		.menu-toggle {
+			display: block !important;
+		}
+	}
+
+	/* Small Mobile */
+	@media (max-width: 480px) {
+		.desktop-nav {
+			display: none !important;
+		}
+
+		.menu-toggle {
+			display: block !important;
+		}
+	}
+
+	@media (max-width: 430px) {
+		.mobile-nav {
+			width: 280px;
+		}
+
+		.mobile-nav-header {
+			padding: 1rem 1.5rem;
+		}
+
+		.mobile-nav-links a {
+			padding: 0.875rem 1.5rem;
+			font-size: 0.9375rem;
 		}
 	}
 

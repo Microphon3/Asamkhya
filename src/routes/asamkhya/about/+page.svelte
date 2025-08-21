@@ -459,18 +459,18 @@
 	}
 
 	.team-member {
-		background: var(--bg-glass);
-		border: 1px solid var(--border-medium);
-		border-radius: 24px;
-		padding: 2.5rem;
-		backdrop-filter: blur(20px);
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 16px;
+		padding: 2rem 1.5rem;
+		backdrop-filter: blur(40px);
+		transition: all 0.2s ease-out;
 	}
 
 	.team-member:hover {
-		transform: translateY(-4px);
 		border-color: var(--neon-green);
-		box-shadow: var(--shadow-medium);
+		box-shadow: 0 8px 32px rgba(0, 212, 255, 0.2);
+		transform: translateY(-4px);
 	}
 
 	.member-image {

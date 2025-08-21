@@ -29,58 +29,6 @@
 				</div>
 
 
-				<!-- Services Section -->
-				<div class="services-section">
-					<div class="service-card">
-						<div class="service-icon">
-							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-								<!-- Web Services Icon -->
-								<circle cx="12" cy="12" r="10"/>
-								<path d="M2 12h20"/>
-								<path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-								<circle cx="12" cy="12" r="3"/>
-								<path d="M8 8l8 8"/>
-								<path d="M16 8l-8 8"/>
-							</svg>
-						</div>
-						<h3>Web Services</h3>
-						<p>Pro Code Meets Vibe Code</p>
-					</div>
-					<div class="service-card">
-						<div class="service-icon">
-							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-								<!-- Automation Icon -->
-								<rect x="2" y="6" width="20" height="12" rx="2"/>
-								<circle cx="8" cy="12" r="2"/>
-								<path d="M14 12h6"/>
-								<path d="M20 10v4"/>
-								<path d="M5 2v4"/>
-								<path d="M19 2v4"/>
-								<path d="M2 12l6-6"/>
-								<path d="M16 18l6-6"/>
-							</svg>
-						</div>
-						<h3>Automation</h3>
-						<p>AI Agents + True Intelligence</p>
-					</div>
-					<div class="service-card">
-						<div class="service-icon">
-							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-								<!-- Product Development Icon -->
-								<path d="M12 2L2 7l10 5 10-5-10-5z"/>
-								<path d="M2 17l10 5 10-5"/>
-								<path d="M2 12l10 5 10-5"/>
-								<circle cx="12" cy="7" r="1" fill="currentColor"/>
-								<circle cx="12" cy="12" r="1" fill="currentColor"/>
-								<circle cx="12" cy="17" r="1" fill="currentColor"/>
-								<path d="M7 12l5-3"/>
-								<path d="M17 12l-5-3"/>
-							</svg>
-						</div>
-						<h3>Product Development</h3>
-						<p>Large Scale Impact Solutions</p>
-					</div>
-				</div>
 
 				<!-- Tech Stack Section -->
 				<div class="tech-stack-section">
@@ -100,12 +48,29 @@
 									<path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
 								</svg>
 							</div>
-							<h3>Create A Website</h3>
+							<h3>Webby</h3>
 							<p>AI Powered Web Development</p>
-							<InteractiveHoverButton href="/asamkhya/website">
+							<InteractiveHoverButton href="/asamkhya/website" className="minimal">
 								<span>Build With Us</span>
-								<svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-									<path d="M8 0L8 14M8 14L14 8M8 14L2 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+								<svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+									<path d="M8 0L8 14M8 14L14 8M8 14L2 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+							</InteractiveHoverButton>
+						</div>
+
+						<div class="path-card">
+							<div class="path-icon">
+								<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+									<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+									<polyline points="9,22 9,12 15,12 15,22"/>
+								</svg>
+							</div>
+							<h3>HeyFrontDesk</h3>
+							<p>Redefining Short-Term Rental Workflow</p>
+							<InteractiveHoverButton href="/asamkhya/heyfrontdesk" className="minimal">
+								<span>Explore</span>
+								<svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+									<path d="M8 0L8 14M8 14L14 8M8 14L2 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 								</svg>
 							</InteractiveHoverButton>
 						</div>
@@ -119,12 +84,12 @@
 									<ellipse cx="12" cy="5" rx="9" ry="3"/>
 								</svg>
 							</div>
-							<h3>AI Course</h3>
-							<p>Acumen Based Admissions</p>
-							<InteractiveHoverButton href="/asamkhya/ai-course">
+							<h3>Cohort 1.0</h3>
+							<p>Become A Vibe Coder</p>
+							<InteractiveHoverButton href="/asamkhya/ai-course" className="minimal">
 								<span>Apply Now</span>
-								<svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-									<path d="M8 0L8 14M8 14L14 8M8 14L2 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+								<svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+									<path d="M8 0L8 14M8 14L14 8M8 14L2 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 								</svg>
 							</InteractiveHoverButton>
 						</div>
@@ -404,18 +369,21 @@
 	}
 
 	.path-card {
-		background: var(--bg-glass);
-		border: 2px solid var(--border-medium);
-		border-radius: 20px;
-		padding: 2rem 1.5rem;
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 12px;
+		padding: 1.5rem 1.25rem;
 		text-align: center;
-		backdrop-filter: blur(20px);
-		transition: all 0.3s var(--ease-out-cubic);
+		backdrop-filter: blur(40px);
+		transition: all 0.2s ease-out;
 		position: relative;
 		overflow: hidden;
 		flex: 1;
 		max-width: 280px;
 		min-width: 260px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 	}
 
 	.path-card::before {

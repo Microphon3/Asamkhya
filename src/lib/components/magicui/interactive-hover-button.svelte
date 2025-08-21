@@ -209,4 +209,25 @@
 		color: var(--neon-green);
 		background: var(--bg-glass);
 	}
+
+	/* Minimal button variant for path cards */
+	.interactive-hover-button.minimal {
+		background: transparent;
+		border: none;
+		color: var(--text-primary);
+		backdrop-filter: none;
+		font-size: 0.9375rem;
+		font-weight: 500;
+		padding: 0.625rem 1.25rem;
+		border-radius: 8px;
+		box-shadow: none;
+		transition: all 0.2s ease-out;
+	}
+
+	.interactive-hover-button.minimal:hover {
+		background: transparent;
+		color: var(--neon-green);
+		transform: none;
+		box-shadow: none;
+	}
 </style>

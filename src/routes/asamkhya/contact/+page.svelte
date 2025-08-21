@@ -305,18 +305,18 @@
 		display: flex;
 		align-items: flex-start;
 		gap: 1.5rem;
-		background: var(--bg-glass);
-		padding: 2rem;
-		border-radius: 16px;
-		border: 1px solid var(--border-medium);
-		backdrop-filter: blur(20px);
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		background: rgba(255, 255, 255, 0.03);
+		padding: 1.5rem 1.25rem;
+		border-radius: 12px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		backdrop-filter: blur(40px);
+		transition: all 0.2s ease-out;
 	}
 
 	.contact-method:hover {
 		border-color: var(--neon-green);
-		transform: translateY(-2px);
-		box-shadow: var(--shadow-subtle);
+		box-shadow: 0 8px 32px rgba(0, 212, 255, 0.2);
+		transform: translateY(-4px);
 	}
 
 	.method-icon {
@@ -441,12 +441,12 @@
 
 	/* Form Section */
 	.form-section {
-		background: var(--bg-glass);
-		border: 1px solid var(--border-medium);
-		border-radius: 24px;
-		padding: 3rem;
-		backdrop-filter: blur(20px);
-		box-shadow: var(--shadow-medium);
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 16px;
+		padding: 2rem 1.5rem;
+		backdrop-filter: blur(40px);
+		box-shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
 	}
 
 	.form-header {
@@ -494,15 +494,15 @@
 	.form-group input,
 	.form-group textarea,
 	.form-group select {
-		padding: 1rem 1.25rem;
-		background: var(--bg-glass);
-		border: 1px solid var(--border-medium);
-		border-radius: 12px;
+		padding: 0.75rem 1rem;
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 8px;
 		color: var(--text-primary);
 		font-family: inherit;
 		font-size: 1rem;
-		backdrop-filter: blur(20px);
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		backdrop-filter: blur(40px);
+		transition: all 0.2s ease-out;
 	}
 
 	.form-group input::placeholder,

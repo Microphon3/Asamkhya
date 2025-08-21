@@ -110,15 +110,15 @@
 				</div>
 				
 				<h1 class="hero-title">
-					Your Property Micromanagers
+					'HeyFrontDesk' Short Term Rental Micromanager
 				</h1>
 				
 				<div class="hero-subtitle">
-					<span class="subtitle-emphasis">24X7. Human Led. True Intelligence Backed.</span>
+					<span class="subtitle-emphasis">Complete Hands-Off Property Management. No More 5 AM Calls.</span>
 				</div>
 				
 				<div class="hero-description">
-					<p>Redefining Short Term Rental Operations. A B2B solution for Property owners of all sizes. For everyone who wants to make more money and yet save more time.</p>
+					<p>24/7 AI agents + human specialists managing everything while you sleep.</p>
 				</div>
 				
 				<div class="launch-status">
@@ -128,12 +128,190 @@
 		</div>
 	</section>
 
-	<!-- The Build Section -->
+	<!-- Problem Section -->
+	<section class="problem">
+		<div class="container">
+			<div class="section-header">
+				<h2>Property Management is Exhausting</h2>
+				<p>Every property owner knows these daily struggles</p>
+			</div>
+			
+			<div class="problems-grid">
+				<div class="problem-card">
+					<div class="problem-icon">🕔</div>
+					<h3>5 AM Emergency Calls</h3>
+					<p>Guest locked out, AC broken, water leaking - your phone never stops ringing</p>
+				</div>
+				
+				<div class="problem-card">
+					<div class="problem-icon">📱</div>
+					<h3>WhatsApp Chaos</h3>
+					<p>Dozens of guest messages, vendor coordination, booking confirmations - all manual</p>
+				</div>
+				
+				<div class="problem-card">
+					<div class="problem-icon">🧹</div>
+					<h3>Vendor Management Nightmare</h3>
+					<p>Coordinating cleaning, maintenance, laundry - constantly chasing different people</p>
+				</div>
+				
+				<div class="problem-card">
+					<div class="problem-icon">💸</div>
+					<h3>Revenue Leakage</h3>
+					<p>Missing bookings, pricing mistakes, payment delays - money slipping through cracks</p>
+				</div>
+				
+				<div class="problem-card">
+					<div class="problem-icon">😵</div>
+					<h3>No Time Off</h3>
+					<p>Can't vacation, can't relax - properties need constant attention</p>
+				</div>
+				
+				<div class="problem-card">
+					<div class="problem-icon">🔄</div>
+					<h3>Everything Manual</h3>
+					<p>Every guest interaction, every vendor call, every booking update - all your time</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Solution Overview -->
+	<section class="solution-overview">
+		<div class="container">
+			<div class="section-header">
+				<h2>What If You Could Be Completely Hands-Off?</h2>
+				<p>While maintaining premium service standards your guests love</p>
+			</div>
+			
+			<div class="transformation-comparison">
+				<div class="before-after">
+					<div class="before">
+						<h3>Before HeyFrontDesk</h3>
+						<div class="scenario-list">
+							<div class="scenario-item bad">
+								<span class="scenario-icon">😤</span>
+								<span>Guest calls at 2 AM - you handle it</span>
+							</div>
+							<div class="scenario-item bad">
+								<span class="scenario-icon">📞</span>
+								<span>Manually coordinate 5 vendors for one issue</span>
+							</div>
+							<div class="scenario-item bad">
+								<span class="scenario-icon">⏰</span>
+								<span>Spend 4 hours daily on property management</span>
+							</div>
+							<div class="scenario-item bad">
+								<span class="scenario-icon">💔</span>
+								<span>Miss family time for guest emergencies</span>
+							</div>
+						</div>
+					</div>
+					
+					<div class="after">
+						<h3>After HeyFrontDesk</h3>
+						<div class="scenario-list">
+							<div class="scenario-item good">
+								<span class="scenario-icon">😴</span>
+								<span>Sleep peacefully - AI handles night calls</span>
+							</div>
+							<div class="scenario-item good">
+								<span class="scenario-icon">🤖</span>
+								<span>Agents coordinate vendors automatically</span>
+							</div>
+							<div class="scenario-item good">
+								<span class="scenario-icon">⏱️</span>
+								<span>Zero daily involvement required</span>
+							</div>
+							<div class="scenario-item good">
+								<span class="scenario-icon">🏖️</span>
+								<span>Vacation without property worries</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Live Demo Section -->
+	<section class="agents-live">
+		<div class="container">
+			<div class="section-header">
+				<h2>Watch HeyFrontDesk Work in Real-Time</h2>
+				<p>See the actual AI agents managing properties right now</p>
+			</div>
+			
+			<BentoGrid>
+				{#each agentFeatures as feature}
+					<BentoCard 
+						name={feature.name}
+						description={feature.description} 
+						cta={feature.cta}
+						className={feature.className}
+					>
+						{#if feature.background === "notifications"}
+							<PremiumNotifications {notifications} />
+						{:else if feature.background === "integrations"}
+							<PremiumIntegrations />
+						{:else if feature.background === "calendar"}
+							<PremiumCalendar selected={new Date(2024, 11, 15)} />
+						{/if}
+					</BentoCard>
+				{/each}
+			</BentoGrid>
+		</div>
+	</section>
+
+	<!-- Results Section -->
+	<section class="results">
+		<div class="container">
+			<div class="section-header">
+				<h2>Proven Results</h2>
+				<p>Real outcomes from our program with property owners</p>
+			</div>
+			
+			<div class="results-grid">
+				<div class="result-stat-card">
+					<div class="stat-number">15+</div>
+					<div class="stat-label">Properties Managed</div>
+					<p>Across multiple cities with zero owner involvement</p>
+				</div>
+				
+				<div class="result-stat-card">
+					<div class="stat-number">200+</div>
+					<div class="stat-label">Guests Handled Monthly</div>
+					<p>Complete check-in to check-out management</p>
+				</div>
+				
+				<div class="result-stat-card">
+					<div class="stat-number">24/7</div>
+					<div class="stat-label">Tested Coverage</div>
+					<p>No emergency calls reached property owners</p>
+				</div>
+				
+				<div class="result-stat-card">
+					<div class="stat-number">0%</div>
+					<div class="stat-label">Owner Time Required</div>
+					<p>Complete hands-off property management proven</p>
+				</div>
+			</div>
+			
+			<div class="testimonial-highlight">
+				<blockquote>
+					<p>"I slept peacefully for the first time in years. HeyFrontDesk handled everything - guest issues, vendor coordination, even 2 AM emergencies. Excited for what's coming!"</p>
+					<cite>— Property Owner, Mumbai (3 units)</cite>
+				</blockquote>
+			</div>
+		</div>
+	</section>
+
+	<!-- How it Works - Technical -->
 	<section class="build-section">
 		<div class="container">
 			<div class="section-header">
-				<h2>How it Works</h2>
-				<p>The first complete property management system that actually works - where property owners are completely hands-off while maintaining 24/7 premium service.</p>
+				<h2>The Technology Behind the Magic</h2>
+				<p>How we achieved complete hands-off property management</p>
 			</div>
 			
 			<!-- HeyFrontDesk System Architecture -->
@@ -184,276 +362,99 @@
 						<span class="stat-label">Owner Involvement Needed</span>
 					</div>
 				</div>
-				
-				<PremiumGravitationalSystem className="agents-orbit-demo" />
-			</div>
-
-		</div>
-	</section>
-
-
-	<!-- Live Agents in Action -->
-	<section class="agents-live">
-		<div class="container">
-			<div class="section-header">
-				<h2>Watch the Agents Work</h2>
-				<p>Real-time activity from the 12 specialized agents managing properties right now</p>
-			</div>
-			
-			<BentoGrid>
-				{#each agentFeatures as feature}
-					<BentoCard 
-						name={feature.name}
-						description={feature.description} 
-						cta={feature.cta}
-						className={feature.className}
-					>
-						{#if feature.background === "notifications"}
-							<PremiumNotifications {notifications} />
-						{:else if feature.background === "integrations"}
-							<PremiumIntegrations />
-						{:else if feature.background === "calendar"}
-							<PremiumCalendar selected={new Date(2024, 11, 15)} />
-						{/if}
-					</BentoCard>
-				{/each}
-			</BentoGrid>
-		</div>
-	</section>
-
-	<!-- Results Section -->
-	<section class="results">
-		<div class="container">
-			<div class="section-header">
-				<h2>The Economics of AI-First Business</h2>
-				<p>Dramatic cost reduction through intelligent automation</p>
-			</div>
-			
-			<div class="cost-comparison">
-				<div class="cost-card traditional">
-					<h3>Traditional Property Management</h3>
-					<div class="cost-amount">₹40,000<span>/month</span></div>
-					<div class="cost-breakdown">
-						<div class="cost-item">• Field staff salaries</div>
-						<div class="cost-item">• Office overhead</div>
-						<div class="cost-item">• Manual coordination</div>
-						<div class="cost-item">• Reactive problem solving</div>
-					</div>
-				</div>
-				
-				<div class="vs-arrow">
-					<span>→</span>
-				</div>
-				
-				<div class="cost-card heyfrontdesk">
-					<h3>HeyFrontDesk</h3>
-					<div class="cost-amount highlight">₹4,000<span>/month</span></div>
-					<div class="cost-breakdown">
-						<div class="cost-item">• Automated 80% of operations</div>
-						<div class="cost-item">• No field staff required</div>
-						<div class="cost-item">• Streamlined vendor coordination</div>
-						<div class="cost-item">• Real-time response times</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="results-highlight">
-				<div class="result-stat">
-					<span class="stat-number">90%</span>
-					<span class="stat-label">Cost Reduction</span>
-				</div>
-				<div class="result-description">
-					<p><em>Same quality service. One-tenth the cost. This is what AI-first design looks like.</em></p>
-				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- Human + AI Section -->
-	<section class="human-ai">
+	<!-- Waitlist Section -->
+	<section class="waitlist">
 		<div class="container">
 			<div class="section-header">
-				<h2>Led by Humans, Powered by Intelligence</h2>
-				<p>The perfect balance: AI efficiency with human judgment</p>
+				<h2>Join the Waitlist</h2>
+				<p>Be among the first property owners to experience hands-off property management</p>
 			</div>
 			
-			<div class="hybrid-showcase">
-				<div class="hybrid-card">
-					<div class="card-icon">
-						<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--neon-green)" stroke-width="2">
-							<rect x="3" y="11" width="18" height="10" rx="2" ry="2"/>
-							<circle cx="12" cy="5" r="2"/>
-							<path d="m12 7-3 4h6l-3-4z"/>
-							<circle cx="8" cy="16" r="1"/>
-							<circle cx="16" cy="16" r="1"/>
-						</svg>
-					</div>
-					<h3>AI Handles</h3>
-					<ul>
-						<li>Routine inquiries & bookings</li>
-						<li>Payment processing & verification</li>
-						<li>Vendor coordination</li>
-						<li>Guest communication</li>
-						<li>Maintenance scheduling</li>
-					</ul>
-				</div>
-				
-				<div class="handoff-arrow">
-					<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--neon-green)" stroke-width="2">
-						<polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
-					</svg>
-				</div>
-				
-				<div class="hybrid-card">
-					<div class="card-icon">
-						<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--neon-green)" stroke-width="2">
-							<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-							<circle cx="9" cy="7" r="4"/>
-							<path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-							<path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-						</svg>
-					</div>
-					<h3>Humans Step In</h3>
-					<ul>
-						<li>Complex problem resolution</li>
-						<li>Emotional situations</li>
-						<li>High-value guest services</li>
-						<li>Crisis management</li>
-						<li>Strategic decisions</li>
-					</ul>
-				</div>
-			</div>
-			
-			<div class="result-summary">
-				<div class="summary-stat">
-					<span class="stat-number">80%</span>
-					<span class="stat-label">Automated</span>
-				</div>
-				<div class="summary-stat">
-					<span class="stat-number">20%</span>
-					<span class="stat-label">Human Touch</span>
-				</div>
-				<div class="summary-stat">
-					<span class="stat-number">100%</span>
-					<span class="stat-label">Satisfaction</span>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- What This Proves Section -->
-	<section class="proof">
-		<div class="container">
-			<div class="section-header">
-				<h2>What This Proves</h2>
-				<p>Why we built this case study for you</p>
-			</div>
-			
-			<div class="proof-grid">
-				<div class="proof-card">
-					<div class="proof-number">01</div>
-					<h3>AI Can Handle Complex Business Logic</h3>
-					<p>Property management isn't just chat. It's multi-step operations, vendor coordination, payments, and crisis management. We proved AI can do it all.</p>
-				</div>
-				
-				<div class="proof-card">
-					<div class="proof-number">02</div>
-					<h3>90% Cost Reduction is Real</h3>
-					<p>Not theoretical. We actually achieved ₹40,000 → ₹4,000 monthly costs while maintaining service quality. The economics work.</p>
-				</div>
-				
-				<div class="proof-card">
-					<div class="proof-number">03</div>
-					<h3>We Can Build This For Your Business</h3>
-					<p>Whatever your industry—retail, healthcare, logistics, finance—we design AI-first solutions that transform your operations and economics.</p>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- Launch Section -->
-	<section class="launch">
-		<div class="container">
-			<div class="section-header">
-				<h2>HeyFrontDesk is Live</h2>
-				<p>See the actual product in action</p>
-			</div>
-			
-			<div class="launch-content">
-				<div class="launch-info">
-					<div class="launch-detail">
-						<h3>Currently Serving</h3>
-						<div class="detail-stats">
-							<div class="detail-stat">
-								<span class="stat-value">15+</span>
-								<span class="stat-desc">Properties</span>
+			<div class="waitlist-content">
+				<div class="waitlist-form-container">
+					<form class="waitlist-form">
+						<div class="form-grid">
+							<div class="form-group">
+								<label for="ownerName">Property Owner Name *</label>
+								<input 
+									type="text" 
+									id="ownerName" 
+									name="ownerName" 
+									required 
+									placeholder="Your full name"
+								/>
 							</div>
-							<div class="detail-stat">
-								<span class="stat-value">200+</span>
-								<span class="stat-desc">Guests/Month</span>
+							
+							<div class="form-group">
+								<label for="unitCount">Number of Properties/Units *</label>
+								<select id="unitCount" name="unitCount" required>
+									<option value="">Select property count</option>
+									<option value="1">1 property</option>
+									<option value="2-5">2-5 properties</option>
+									<option value="6-10">6-10 properties</option>
+									<option value="11-20">11-20 properties</option>
+									<option value="20+">20+ properties</option>
+								</select>
+							</div>
+							
+							<div class="form-group">
+								<label for="city">City *</label>
+								<input 
+									type="text" 
+									id="city" 
+									name="city" 
+									required 
+									placeholder="Your city"
+								/>
+							</div>
+							
+							<div class="form-group">
+								<label for="state">State *</label>
+								<input 
+									type="text" 
+									id="state" 
+									name="state" 
+									required 
+									placeholder="Your state"
+								/>
+							</div>
+							
+							<div class="form-group full-width">
+								<label for="callbackTime">When can we call you back? *</label>
+								<select id="callbackTime" name="callbackTime" required>
+									<option value="">Select preferred time</option>
+									<option value="morning">Morning (9 AM - 12 PM)</option>
+									<option value="afternoon">Afternoon (12 PM - 4 PM)</option>
+									<option value="evening">Evening (4 PM - 8 PM)</option>
+									<option value="weekend">Weekend</option>
+									<option value="flexible">I'm flexible</option>
+								</select>
 							</div>
 						</div>
-					</div>
-					
-					<div class="launch-links">
-						<a href="https://heyfrontdesk.com" target="_blank" rel="noopener noreferrer" class="launch-btn primary">
-							<span>Visit HeyFrontDesk.com</span>
-							<svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-								<path d="M8 2L14 8L8 14M14 8L2 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-							</svg>
-						</a>
 						
-						<a href="https://demo.heyfrontdesk.com" target="_blank" rel="noopener noreferrer" class="launch-btn secondary">
-							<span>Try Live Demo</span>
+						<button type="submit" class="waitlist-submit-btn">
+							<span>Join Waitlist</span>
 							<svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-								<path d="M8 2L14 8L8 14M14 8L2 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M8 0L8 14M8 14L14 8M8 14L2 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 							</svg>
-						</a>
-					</div>
+						</button>
+					</form>
 				</div>
 				
-				<div class="investment-info">
-					<h3>Investment Options</h3>
-					<div class="investment-tier">
-						<div class="tier-price">₹9,000<span>/property/month</span></div>
-						<div class="tier-features">
-							<div class="tier-feature">• Complete AI property management</div>
-							<div class="tier-feature">• 12 specialized agents</div>
-							<div class="tier-feature">• Human backup & escalation</div>
-							<div class="tier-feature">• 24/7 guest support</div>
-						</div>
-					</div>
+				<div class="orbit-section">
+					<PremiumGravitationalSystem className="agents-orbit-demo" />
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- CTA Section -->
-	<section class="case-study-cta">
-		<div class="container">
-			<div class="cta-content">
-				<h2>Ready to Transform Your Business?</h2>
-				<p>Let's design an AI-first solution for your industry. Same approach, your context.</p>
-				
-				<div class="cta-actions">
-					<InteractiveHoverButton href="/asamkhya/contact" className="primary large">
-						<span>Schedule Strategy Session</span>
-						<svg width="20" height="20" viewBox="0 0 16 16" fill="none">
-							<path d="M8 2L14 8L8 14M14 8L2 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-						</svg>
-					</InteractiveHoverButton>
-					
-					<InteractiveHoverButton href="/asamkhya/ai-course" className="secondary large">
-						<span>Learn Our Methods</span>
-					</InteractiveHoverButton>
-				</div>
-				
-				<div class="cta-note">
-					<p><em>This case study showcases our AI product development capabilities. Every business is unique—let's build something revolutionary for yours.</em></p>
-				</div>
-			</div>
-		</div>
-	</section>
+
+
+
 </div>
 
 <style>
@@ -1155,11 +1156,11 @@
 	}
 
 	.hybrid-card {
-		background: var(--bg-glass);
-		border: 1px solid var(--border-medium);
-		border-radius: 16px;
-		padding: 2rem;
-		backdrop-filter: blur(20px);
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 12px;
+		padding: 1.5rem 1.25rem;
+		backdrop-filter: blur(40px);
 		text-align: center;
 	}
 
@@ -1614,56 +1615,440 @@
 		font-weight: 600;
 	}
 
-	/* Results Section Updates */
-	.cost-comparison {
-		display: flex;
-		align-items: center;
-		justify-content: center;
+	/* Problem Section */
+	.problem {
+		padding: 8rem 0;
+		background: var(--bg-primary);
+	}
+
+	.problems-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 		gap: 2rem;
+		margin-top: 3rem;
+	}
+
+	.problem-card {
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 12px;
+		padding: 1.5rem 1.25rem;
+		backdrop-filter: blur(40px);
+		transition: all 0.2s ease-out;
+		text-align: center;
+	}
+
+	.problem-card:hover {
+		border-color: rgba(255, 100, 100, 0.3);
+		transform: translateY(-2px);
+	}
+
+	.problem-icon {
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+		display: block;
+	}
+
+	.problem-card h3 {
+		color: var(--text-primary);
+		font-size: 1.125rem;
+		font-weight: 600;
+		margin: 0 0 0.75rem;
+	}
+
+	.problem-card p {
+		color: var(--text-secondary);
+		line-height: 1.5;
+		margin: 0;
+		font-size: 0.9375rem;
+	}
+
+	/* Solution Overview Section */
+	.solution-overview {
+		padding: 8rem 0;
+		background: var(--bg-secondary);
+	}
+
+	.transformation-comparison {
+		margin-top: 3rem;
+	}
+
+	.before-after {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 3rem;
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+	.before,
+	.after {
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 12px;
+		padding: 2rem 1.5rem;
+		backdrop-filter: blur(40px);
+	}
+
+	.before {
+		border-color: rgba(255, 100, 100, 0.2);
+	}
+
+	.after {
+		border-color: rgba(0, 255, 136, 0.2);
+	}
+
+	.before h3,
+	.after h3 {
+		color: var(--text-primary);
+		font-size: 1.25rem;
+		font-weight: 700;
+		margin: 0 0 1.5rem;
+		text-align: center;
+	}
+
+	.scenario-list {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.scenario-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.75rem;
+	}
+
+	.scenario-icon {
+		font-size: 1.25rem;
+		flex-shrink: 0;
+		margin-top: 0.125rem;
+	}
+
+	.scenario-item.bad span:last-child {
+		color: var(--text-secondary);
+	}
+
+	.scenario-item.good span:last-child {
+		color: var(--text-primary);
+	}
+
+	/* Results Section */
+	.results {
+		padding: 8rem 0;
+		background: var(--bg-primary);
+	}
+
+	.results-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 2rem;
+		margin-top: 3rem;
 		margin-bottom: 4rem;
 	}
 
-	.cost-card {
-		background: var(--bg-glass);
-		border: 1px solid var(--border-medium);
-		border-radius: 16px;
-		padding: 2.5rem;
-		backdrop-filter: blur(20px);
+	.result-stat-card {
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 12px;
+		padding: 2rem 1.5rem;
+		backdrop-filter: blur(40px);
 		text-align: center;
-		flex: 1;
-		max-width: 300px;
+		transition: all 0.2s ease-out;
 	}
 
-	.cost-card h3 {
+	.result-stat-card:hover {
+		border-color: var(--neon-green);
+		transform: translateY(-2px);
+	}
+
+	.stat-number {
+		font-size: 2.5rem;
+		font-weight: 800;
+		color: var(--neon-green);
+		line-height: 1;
+		display: block;
+		margin-bottom: 0.5rem;
+	}
+
+	.stat-label {
+		color: var(--text-primary);
+		font-size: 1.125rem;
+		font-weight: 600;
+		margin-bottom: 0.75rem;
+		display: block;
+	}
+
+	.result-stat-card p {
+		color: var(--text-secondary);
+		line-height: 1.4;
+		margin: 0;
+		font-size: 0.9375rem;
+	}
+
+	.testimonial-highlight {
+		max-width: 700px;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	.testimonial-highlight blockquote {
+		background: rgba(0, 255, 136, 0.05);
+		border: 1px solid rgba(0, 255, 136, 0.2);
+		border-radius: 12px;
+		padding: 2rem;
+		backdrop-filter: blur(40px);
+		margin: 0;
+	}
+
+	.testimonial-highlight p {
+		color: var(--text-primary);
+		font-size: 1.125rem;
+		line-height: 1.6;
+		margin: 0 0 1rem;
+		font-style: italic;
+	}
+
+	.testimonial-highlight cite {
+		color: var(--neon-green);
+		font-size: 0.9375rem;
+		font-weight: 500;
+		font-style: normal;
+	}
+
+	/* Waitlist Section */
+	.waitlist {
+		padding: 8rem 0;
+		background: var(--bg-secondary);
+	}
+
+	.waitlist-content {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 3rem;
+		margin-top: 3rem;
+		align-items: start;
+	}
+
+	.waitlist-form-container {
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 12px;
+		padding: 2rem 1.5rem;
+		backdrop-filter: blur(40px);
+	}
+
+	.waitlist-form {
+		width: 100%;
+	}
+
+	.form-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1.5rem;
+		margin-bottom: 2rem;
+	}
+
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.form-group.full-width {
+		grid-column: 1 / -1;
+	}
+
+	.form-group label {
+		color: var(--text-primary);
+		font-weight: 600;
+		font-size: 0.9375rem;
+	}
+
+	.form-group input,
+	.form-group select {
+		padding: 0.75rem 1rem;
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 8px;
+		color: var(--text-primary);
+		font-family: inherit;
+		font-size: 1rem;
+		backdrop-filter: blur(40px);
+		transition: all 0.2s ease-out;
+	}
+
+	/* Custom select styling */
+	.form-group select {
+		appearance: none;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f0f6fc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+		background-repeat: no-repeat;
+		background-position: right 0.75rem center;
+		background-size: 16px;
+		padding-right: 2.5rem;
+		cursor: pointer;
+	}
+
+	.form-group select option {
+		background: var(--bg-secondary);
+		color: var(--text-primary);
+		padding: 0.75rem;
+		border: none;
+	}
+
+	.form-group input::placeholder {
+		color: var(--text-secondary);
+	}
+
+	.form-group input:focus,
+	.form-group select:focus {
+		outline: none;
+		border-color: var(--neon-green);
+		box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+	}
+
+	.waitlist-submit-btn {
+		width: 100%;
+		background: var(--neon-green);
+		color: var(--bg-primary);
+		border: none;
+		padding: 1rem 2rem;
+		font-size: 1.0625rem;
+		font-weight: 600;
+		border-radius: 8px;
+		cursor: pointer;
+		transition: all 0.2s ease-out;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+	}
+
+	.waitlist-submit-btn:hover {
+		transform: translateY(-1px);
+		box-shadow: 0 4px 12px rgba(0, 255, 136, 0.3);
+	}
+
+	.waitlist-benefits {
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 12px;
+		padding: 2rem 1.5rem;
+		backdrop-filter: blur(40px);
+	}
+
+	.waitlist-benefits h3 {
 		color: var(--text-primary);
 		font-size: 1.25rem;
 		font-weight: 700;
 		margin: 0 0 1.5rem;
 	}
 
-	.cost-amount {
-		font-size: 2.5rem;
-		font-weight: 800;
-		line-height: 1;
-		margin-bottom: 1.5rem;
-		color: var(--text-secondary);
-	}
-
-	.cost-amount.highlight {
-		color: var(--neon-green);
-	}
-
-	.cost-amount span {
-		font-size: 1rem;
-		font-weight: 500;
-		color: var(--text-muted);
-	}
-
-	.cost-breakdown {
+	.benefit-items {
 		display: flex;
 		flex-direction: column;
-		gap: 0.5rem;
-		text-align: left;
+		gap: 1rem;
+	}
+
+	.benefit-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.75rem;
+	}
+
+	.benefit-check {
+		color: var(--neon-green);
+		font-weight: 700;
+		font-size: 1.125rem;
+		flex-shrink: 0;
+	}
+
+	.benefit-item span:last-child {
+		color: var(--text-secondary);
+		line-height: 1.4;
+	}
+
+	/* Responsive Styles */
+	@media (max-width: 768px) {
+		.problem,
+		.solution-overview,
+		.results,
+		.waitlist {
+			padding: 6rem 0;
+		}
+
+		.problems-grid {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+
+		.before-after {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+
+		.results-grid {
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			gap: 1.5rem;
+		}
+
+		.waitlist-content {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+
+		.form-grid {
+			grid-template-columns: 1fr;
+			gap: 1rem;
+		}
+
+		.waitlist-form-container,
+		.waitlist-benefits {
+			padding: 1.5rem 1rem;
+		}
+	}
+
+	@media (max-width: 430px) {
+		.problem,
+		.solution-overview,
+		.results,
+		.waitlist {
+			padding: 4rem 0;
+		}
+
+		.problem-card,
+		.before,
+		.after,
+		.result-stat-card {
+			padding: 1.25rem 1rem;
+		}
+
+		.problem-icon {
+			font-size: 2rem;
+		}
+
+		.stat-number {
+			font-size: 2rem;
+		}
+
+		.testimonial-highlight blockquote {
+			padding: 1.5rem;
+		}
+
+		.waitlist-content {
+			gap: 1.5rem;
+		}
+
+		.form-group input,
+		.form-group select {
+			padding: 0.625rem 0.75rem;
+		}
+
+		.waitlist-submit-btn {
+			padding: 0.875rem 1.5rem;
+		}
 	}
 
 	.cost-item {
@@ -2023,9 +2408,22 @@
 		text-align: center;
 	}
 
+	.orbit-section {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		min-height: 400px;
+		padding: 1rem;
+	}
+
 	:global(.agents-orbit-demo) {
-		margin: 2rem auto;
-		padding: 2rem;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: auto;
+		max-width: 297px;
+		max-height: 297px;
 	}
 
 	/* Bento Grid Customizations */
